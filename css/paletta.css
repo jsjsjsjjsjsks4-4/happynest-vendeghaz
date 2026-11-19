@@ -1,0 +1,35 @@
+/* HappyNest v5 · paletták. Mindhárom ugyanazokat a szerepeket tölti ki:
+   alap = lap háttere, szoveg = szöveg és a sötét szakasz háttere, akcent = az egyetlen kiemelő szín,
+   akcent-sz = az akcent szövegre és kitöltésre biztonságos árnyalata (≥ 4,5:1 az alapon és az alappal).
+   Az (A) és a (C) akcentje eleve elég sötét, ezért ott a kettő azonos. A (B) #9A6B43 akcentje az alapon
+   csak 4,1:1, ezért szövegnél és kitöltésnél #8E6139 lép a helyére (4,8:1).
+   A többi szín ugyanebből a háromból kevert árnyalat (sRGB keverés, kiszámítva:
+   Claude tesztelés\happynest-v5-2026-11-19\paletta-szamol.py), új színt nem vezet be.
+
+   A VÁLASZTÁS (2026-11-19, Levente): (B) natúr fa és len. A VÁLASZTÁS EGY SOR: az alábbi „AKTÍV PALETTA” sorban írd át az összes „a-” előtagot „b-”-re vagy „c-”-re
+   (egy keresés-csere ebben az egy sorban).
+   s-akcent = az akcent a sötét szakaszon (B: #C3A78E, 6,3:1 a #2E2924-en).
+   Előnézet csere nélkül: index.html?paletta=b (a böngészőfül bezárásáig megmarad; ?paletta=a visszaállít). */
+
+:root{
+  /* (A) erdei zsálya */
+  --a-alap:#F4F2EC;--a-szoveg:#23302A;--a-akcent:#4F6B57;--a-akcent-sz:#4F6B57;
+  --a-felulet:#E7E6E0;--a-halk:#4D5751;--a-vonal:#CECFC9;--a-s-halk:#CACBC5;--a-s-vonal:#515B55;--a-akcent-hatar:#99A89A;--a-akcent-halvany:#D3D7CE;--a-gomb-hover:#496351;--a-mezo-hatar:#ABAEA8;--a-s-akcent:#99A89A;
+  /* (B) natúr fa és len */
+  --b-alap:#F6F1E9;--b-szoveg:#2E2924;--b-akcent:#9A6B43;--b-akcent-sz:#8E6139;
+  --b-felulet:#EAE5DD;--b-halk:#56514B;--b-vonal:#D2CDC6;--b-s-halk:#CEC9C2;--b-s-vonal:#5A554F;--b-akcent-hatar:#C3A78E;--b-akcent-halvany:#E4D6C8;--b-gomb-hover:#815936;--b-mezo-hatar:#B0ABA4;--b-s-akcent:#C3A78E;
+  /* (C) kék óra */
+  --c-alap:#F3F4F5;--c-szoveg:#1F2933;--c-akcent:#3D5A73;--c-akcent-sz:#3D5A73;
+  --c-felulet:#E6E8E9;--c-halk:#49525A;--c-vonal:#CDCFD2;--c-s-halk:#C9CBCE;--c-s-vonal:#4E565E;--c-akcent-hatar:#8F9FAE;--c-akcent-halvany:#CFD5DB;--c-gomb-hover:#39536A;--c-mezo-hatar:#A9ADB1;--c-s-akcent:#8F9FAE;
+}
+
+/* AKTÍV PALETTA */
+:root{--alap:var(--b-alap);--szoveg:var(--b-szoveg);--akcent:var(--b-akcent);--akcent-sz:var(--b-akcent-sz);--felulet:var(--b-felulet);--halk:var(--b-halk);--vonal:var(--b-vonal);--s-halk:var(--b-s-halk);--s-vonal:var(--b-s-vonal);--akcent-hatar:var(--b-akcent-hatar);--akcent-halvany:var(--b-akcent-halvany);--gomb-hover:var(--b-gomb-hover);--mezo-hatar:var(--b-mezo-hatar);--s-akcent:var(--b-s-akcent)}
+
+/* előnézet ?paletta=a|b|c paraméterrel (a fejléc inline szkriptje teszi a data-paletta attribútumot) */
+:root[data-paletta="a"]{--alap:var(--a-alap);--szoveg:var(--a-szoveg);--akcent:var(--a-akcent);--akcent-sz:var(--a-akcent-sz);--felulet:var(--a-felulet);--halk:var(--a-halk);--vonal:var(--a-vonal);--s-halk:var(--a-s-halk);--s-vonal:var(--a-s-vonal);--akcent-hatar:var(--a-akcent-hatar);--akcent-halvany:var(--a-akcent-halvany);--gomb-hover:var(--a-gomb-hover);--mezo-hatar:var(--a-mezo-hatar);--s-akcent:var(--a-s-akcent)}
+:root[data-paletta="b"]{--alap:var(--b-alap);--szoveg:var(--b-szoveg);--akcent:var(--b-akcent);--akcent-sz:var(--b-akcent-sz);--felulet:var(--b-felulet);--halk:var(--b-halk);--vonal:var(--b-vonal);--s-halk:var(--b-s-halk);--s-vonal:var(--b-s-vonal);--akcent-hatar:var(--b-akcent-hatar);--akcent-halvany:var(--b-akcent-halvany);--gomb-hover:var(--b-gomb-hover);--mezo-hatar:var(--b-mezo-hatar);--s-akcent:var(--b-s-akcent)}
+:root[data-paletta="c"]{--alap:var(--c-alap);--szoveg:var(--c-szoveg);--akcent:var(--c-akcent);--akcent-sz:var(--c-akcent-sz);--felulet:var(--c-felulet);--halk:var(--c-halk);--vonal:var(--c-vonal);--s-halk:var(--c-s-halk);--s-vonal:var(--c-s-vonal);--akcent-hatar:var(--c-akcent-hatar);--akcent-halvany:var(--c-akcent-halvany);--gomb-hover:var(--c-gomb-hover);--mezo-hatar:var(--c-mezo-hatar);--s-akcent:var(--c-s-akcent)}
+
+/* sötét szakasz: a szövegszín lesz a háttér, az alap a szöveg */
+:root{--s-alap:var(--szoveg);--s-szoveg:var(--alap)}

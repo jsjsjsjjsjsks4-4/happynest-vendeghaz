@@ -4,61 +4,68 @@
 <meta charset="utf-8">
   <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>document.documentElement.className+=' js';</script>
-<title>Nincs ilyen oldal · HappyNest Vendégház</title>
-<meta name="description" content="Ez az oldal nem található. Innen visszajutsz a HappyNest Vendégház főoldalára és a szabad napokhoz.">
-<meta name="robots" content="noindex">
-<meta name="theme-color" content="#EEF0EA">
+<script>(function(d){d.className+=' js';try{var p=new URLSearchParams(location.search).get('paletta');if(p&&/^[abc]$/.test(p))sessionStorage.setItem('hn-paletta',p);var s=sessionStorage.getItem('hn-paletta');if(s)d.setAttribute('data-paletta',s)}catch(e){}})(document.documentElement);</script>
+<title>Az oldal nem található · HappyNest Vendégház</title>
+<meta name="description" content="A keresett oldal nincs meg. A főoldalról vagy a szabad napoktól biztosan továbbjutsz.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="hu_HU">
+<meta property="og:title" content="Az oldal nem található · HappyNest Vendégház">
+<meta property="og:description" content="A keresett oldal nincs meg. A főoldalról vagy a szabad napoktól biztosan továbbjutsz.">
+<meta property="og:image" content="media/nyito-szeles-1200.webp">
+<meta name="theme-color" content="#F6F1E9">
 <link rel="icon" href="favicon.ico" sizes="any">
-<link rel="stylesheet" href="css/site.css">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="js/vendor/lenis.css?v=7">
+<link rel="stylesheet" href="css/paletta.css?v=7">
+<link rel="stylesheet" href="css/alap.css?v=7">
+<link rel="stylesheet" href="css/oldalak.css?v=7">
+<link rel="stylesheet" href="css/aloldal.css?v=7">
 </head>
 <body class="p-404">
-<a class="skip" href="#tartalom">Ugrás a tartalomra</a>
-<header class="nav" id="nav">
-  <div class="wrap nav__in">
+<a class="ugro" href="#tartalom">Ugrás a tartalomra</a>
+<header class="fej" data-fej>
+  <div class="wrap fej__in">
     <a class="logo" href="index.html"><span class="logo__nev" translate="no">HappyNest</span><span class="logo__hely">Vendégház, Gyód</span></a>
-    <nav class="nav__menu" aria-label="Fő navigáció"><a href="a-haz.html">A ház</a><a href="galeria.html">Galéria</a><a href="kapcsolat.html">Foglaltság és kapcsolat</a><a class="nav__tel" href="tel:+36203726984">+36 20 372 6984</a></nav>
-    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu"><span class="nav__toggle-txt">Menü</span><span class="nav__toggle-ikon" aria-hidden="true"></span></button>
+    <nav class="fej__nav" aria-label="Fő navigáció"><a href="index.html">Főoldal</a><a href="a-haz.html">A ház</a><a href="galeria.html">Galéria</a><a href="kapcsolat.html">Szabad napok és kapcsolat</a></nav>
+    <button class="fej__menu" type="button" aria-expanded="false" aria-controls="menu" data-menu-nyit>Menü</button>
   </div>
 </header>
-<div class="menu" id="menu" aria-hidden="true">
-  <nav aria-label="Mobil navigáció"><ul class="menu__lista"><li><a href="index.html">Főoldal</a></li><li><a href="a-haz.html">A ház</a></li><li><a href="galeria.html">Galéria</a></li><li><a href="kapcsolat.html">Foglaltság és kapcsolat</a></li></ul></nav>
-  <div class="menu__lab"><a href="tel:+36203726984">+36 20 372 6984</a><a href="mailto:happynest.vendeghaz@gmail.com">happynest.vendeghaz@gmail.com</a></div>
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menü" data-menu hidden>
+  <div class="wrap menu__in">
+    <div class="menu__fej"><span class="logo__nev" translate="no">HappyNest</span><button class="fej__menu" type="button" data-menu-zar>Bezár</button></div>
+    <nav aria-label="Mobil navigáció"><ul class="menu__lista"><li><a href="index.html">Főoldal</a></li><li><a href="a-haz.html">A ház</a></li><li><a href="galeria.html">Galéria</a></li><li><a href="kapcsolat.html">Szabad napok és kapcsolat</a></li></ul></nav>
+    <p class="menu__lab"><a href="tel:+36203726984">+36 20 372 6984</a><a href="mailto:happynest.vendeghaz@gmail.com">happynest.vendeghaz@gmail.com</a></p>
+  </div>
 </div>
+
 <main id="tartalom">
-  <section class="k-fej" aria-labelledby="h404">
-    <div class="wrap g12">
-      <h1 id="h404">Ez az ösvény nem vezet sehova</h1>
-      <p class="k-fej__lead lead halk">A keresett oldal nincs meg. A főoldalról vagy a szabad napoktól biztosan továbbjutsz.</p>
-      <div class="k-fej__hird"><a href="index.html">Főoldal</a><a href="kapcsolat.html#foglaltsag">Szabad napok</a></div>
+  <section class="hiba404" aria-labelledby="h404" data-elso>
+    <div class="wrap racs">
+      <figure class="hiba404__kep"><img src="media/kod-960.webp" srcset="media/kod-480.webp 480w, media/kod-720.webp 720w, media/kod-960.webp 960w" sizes="(max-width: 760px) calc(100vw - 2.5rem), 390px" width="960" height="1200" alt="Ködös kert, a fák körvonala alig látszik" decoding="async" loading="eager"></figure>
+      <div class="hiba404__szoveg">
+        <h1 id="h404">Ez az ösvény nem vezet sehova</h1>
+        <p class="lead">A keresett oldal nincs meg. A főoldalról vagy a szabad napoktól biztosan továbbjutsz.</p>
+        <div class="sorgomb"><a class="gomb" href="index.html">Vissza a főoldalra</a><a class="lnk" href="kapcsolat.html#foglaltsag">Szabad napok</a></div>
+      </div>
     </div>
   </section>
 </main>
 <footer class="lab">
-  <div class="wrap">
-    <div class="lab__fo">
-      <div class="lab__marka">
-        <a class="logo" href="index.html"><span class="logo__nev" translate="no">HappyNest</span><span class="logo__hely">Vendégház, Gyód</span></a>
-        <p>Teljes ház legfeljebb 8 vendégnek, Pécstől 5 km-re, a Mecsekre néző gyódi domboldalon.</p>
-      </div>
-      <nav class="lab__nav" aria-label="Lábléc navigáció">
-        <h2>Oldalak</h2>
-        <ul><li><a href="index.html">Főoldal</a></li><li><a href="a-haz.html">A ház</a></li><li><a href="galeria.html">Galéria</a></li><li><a href="kapcsolat.html">Foglaltság és kapcsolat</a></li></ul>
-      </nav>
-      <div class="lab__adat">
-        <h2>Elérhetőség</h2>
-        <ul>
-          <li><a href="tel:+36203726984">+36 20 372 6984</a></li>
-          <li><a href="mailto:happynest.vendeghaz@gmail.com">happynest.vendeghaz@gmail.com</a></li>
-          <li><a href="https://www.facebook.com/profile.php?id=100092262921616" rel="noopener">Facebook</a></li>
-        </ul>
-        <p class="halk-s">7668 Gyód, hrsz. 612/2</p>
-      </div>
+  <div class="wrap lab__in">
+    <div class="lab__marka">
+      <p class="logo"><span class="logo__nev" translate="no">HappyNest</span><span class="logo__hely">Vendégház, Gyód</span></p>
+      <p>Teljes ház legfeljebb 8 vendégnek, Pécstől 5 km-re, a Mecsekre néző gyódi domboldalon.</p>
     </div>
-    <div class="lab__also"><span>© 2026 HappyNest Vendégház</span><span>NTAK-regisztrációs szám: MA25107793</span><span>Fotók: HappyNest Vendégház</span></div>
+    <nav class="lab__nav" aria-label="Lábléc navigáció"><h2>Oldalak</h2><ul><li><a href="index.html">Főoldal</a></li><li><a href="a-haz.html">A ház</a></li><li><a href="galeria.html">Galéria</a></li><li><a href="kapcsolat.html">Szabad napok és kapcsolat</a></li></ul></nav>
+    <div class="lab__adat">
+      <h2>Elérhetőség</h2>
+      <ul><li><a href="tel:+36203726984">+36 20 372 6984</a></li><li><a href="mailto:happynest.vendeghaz@gmail.com">happynest.vendeghaz@gmail.com</a></li><li><a href="https://www.facebook.com/profile.php?id=100092262921616" rel="noopener">Facebook</a></li></ul>
+      <p>7668 Gyód, hrsz. 612/2</p>
+    </div>
   </div>
+  <div class="wrap lab__also"><span>© 2026 HappyNest Vendégház</span><span>NTAK-regisztrációs szám: MA25107793</span><span>Fotók: HappyNest Vendégház</span></div>
 </footer>
-<script src="js/vendor/lenis.min.js" defer></script>
-<script src="js/site.js" defer></script>
+<script src="js/hn.js?v=7" defer></script>
 </body>
 </html>
+

@@ -4,116 +4,110 @@
 <meta charset="utf-8">
   <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>document.documentElement.className+=' js';</script>
-<title>Galéria · HappyNest Vendégház Gyód, fotók a házról</title>
-<meta name="description" content="Fotók a HappyNest Vendégházról: havas kert, finn szauna, kandalló, hálószoba és fürdő. Nagyítható képek a gyódi vendégházról, Pécs mellől.">
-<!-- canonical: a domain még nyitott. Élesítéskor: <link rel="canonical" href="https://DOMAIN/galeria"> -->
+<script>(function(d){d.className+=' js';try{var p=new URLSearchParams(location.search).get('paletta');if(p&&/^[abc]$/.test(p))sessionStorage.setItem('hn-paletta',p);var s=sessionStorage.getItem('hn-paletta');if(s)d.setAttribute('data-paletta',s)}catch(e){}})(document.documentElement);</script>
+<title>Galéria · HappyNest Vendégház, Gyód</title>
+<meta name="description" content="Fotók a házról és a kertről, télen és nyáron: jakuzzi, finn szauna, kandalló, hálószobák.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="hu_HU">
 <meta property="og:title" content="Galéria · HappyNest Vendégház, Gyód">
-<meta property="og:description" content="A ház és a kert képekben, télen és nyáron.">
-<meta property="og:image" content="media/tel-fenyok-1200.webp">
-<meta name="theme-color" content="#EEF0EA">
+<meta property="og:description" content="Fotók a házról és a kertről, télen és nyáron: jakuzzi, finn szauna, kandalló, hálószobák.">
+<meta property="og:image" content="media/nyito-szeles-1200.webp">
+<meta name="theme-color" content="#F6F1E9">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="css/site.css">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[
- {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Főoldal","item":"index.html"},{"@type":"ListItem","position":2,"name":"Galéria"}]}
-]}
-</script>
+<link rel="stylesheet" href="js/vendor/lenis.css?v=7">
+<link rel="stylesheet" href="css/paletta.css?v=7">
+<link rel="stylesheet" href="css/alap.css?v=7">
+<link rel="stylesheet" href="css/oldalak.css?v=7">
+<link rel="stylesheet" href="css/aloldal.css?v=7">
 </head>
 <body class="p-gal">
-<a class="skip" href="#tartalom">Ugrás a tartalomra</a>
-<header class="nav" id="nav">
-  <div class="wrap nav__in">
+<a class="ugro" href="#tartalom">Ugrás a tartalomra</a>
+<header class="fej" data-fej>
+  <div class="wrap fej__in">
     <a class="logo" href="index.html"><span class="logo__nev" translate="no">HappyNest</span><span class="logo__hely">Vendégház, Gyód</span></a>
-    <nav class="nav__menu" aria-label="Fő navigáció"><a href="a-haz.html">A ház</a><a href="galeria.html" aria-current="page">Galéria</a><a href="kapcsolat.html">Foglaltság és kapcsolat</a><a class="nav__tel" href="tel:+36203726984">+36 20 372 6984</a></nav>
-    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu"><span class="nav__toggle-txt">Menü</span><span class="nav__toggle-ikon" aria-hidden="true"></span></button>
+    <nav class="fej__nav" aria-label="Fő navigáció"><a href="index.html">Főoldal</a><a href="a-haz.html">A ház</a><a href="galeria.html" aria-current="page">Galéria</a><a href="kapcsolat.html">Szabad napok és kapcsolat</a></nav>
+    <button class="fej__menu" type="button" aria-expanded="false" aria-controls="menu" data-menu-nyit>Menü</button>
   </div>
 </header>
-<div class="menu" id="menu" aria-hidden="true">
-  <nav aria-label="Mobil navigáció"><ul class="menu__lista"><li><a href="index.html">Főoldal</a></li><li><a href="a-haz.html">A ház</a></li><li><a href="galeria.html" aria-current="page">Galéria</a></li><li><a href="kapcsolat.html">Foglaltság és kapcsolat</a></li></ul></nav>
-  <div class="menu__lab"><a href="tel:+36203726984">+36 20 372 6984</a><a href="mailto:happynest.vendeghaz@gmail.com">happynest.vendeghaz@gmail.com</a></div>
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menü" data-menu hidden>
+  <div class="wrap menu__in">
+    <div class="menu__fej"><span class="logo__nev" translate="no">HappyNest</span><button class="fej__menu" type="button" data-menu-zar>Bezár</button></div>
+    <nav aria-label="Mobil navigáció"><ul class="menu__lista"><li><a href="index.html">Főoldal</a></li><li><a href="a-haz.html">A ház</a></li><li><a href="galeria.html" aria-current="page">Galéria</a></li><li><a href="kapcsolat.html">Szabad napok és kapcsolat</a></li></ul></nav>
+    <p class="menu__lab"><a href="tel:+36203726984">+36 20 372 6984</a><a href="mailto:happynest.vendeghaz@gmail.com">happynest.vendeghaz@gmail.com</a></p>
+  </div>
 </div>
+
 <main id="tartalom">
-  <header class="gal-fej">
-    <div class="wrap g12">
-      <h1>Galéria</h1>
-      <p class="gal-fej__lead lead">A ház és a kert, télen és nyáron. Kattints egy képre, és lapozz a nyilakkal.</p>
-      <div class="szuro" role="group" aria-label="Képek szűrése">
-        <div class="szuro__gombok">
+  <section class="galfej" aria-labelledby="gal-cim" data-elso>
+    <div class="wrap">
+      <div class="galfej__in racs">
+        <h1 id="gal-cim">Galéria</h1>
+        <p class="lead galfej__lead">A ház és a kert, télen és nyáron. Kattints egy képre, és lapozz a nyilakkal.</p>
+        <div class="szuro" role="group" aria-label="Képek szűrése">
           <button type="button" data-szuro="mind" aria-pressed="true">Mind</button>
           <button type="button" data-szuro="tel" aria-pressed="false">Tél</button>
           <button type="button" data-szuro="wellness" aria-pressed="false">Wellness</button>
           <button type="button" data-szuro="bent" aria-pressed="false">Bent</button>
           <button type="button" data-szuro="kert" aria-pressed="false">Kert</button>
+          <p class="szuro__db" data-gal-db aria-live="polite">10 fotó</p>
         </div>
-        <p class="szuro__db" data-gal-db aria-live="polite">11 fotó</p>
       </div>
-    </div>
-  </header>
-
-  <div class="wrap">
-    <div class="gal" data-gal>
-      <figure class="gal__elem r-43" data-kat="tel kert"><button type="button" aria-label="Havas fenyők a kertben, nagyítás"><img src="media/tel-fenyok-1200.webp" srcset="media/tel-fenyok-640.webp 640w, media/tel-fenyok-1200.webp 1200w, media/tel-fenyok-1920.webp 1920w" sizes="(max-width: 599px) 92vw, 46vw" width="1920" height="1440" alt="Havas fenyők a kertben, mögöttük a ház" decoding="async" fetchpriority="high" loading="eager"></button></figure>
-      <span class="gal__tores gal__tores--1" aria-hidden="true"></span>
-      <figure class="gal__elem r-34" data-kat="wellness"><button type="button" aria-label="Szauna kályha, nagyítás"><img src="media/szauna-kalyha-1200.webp" srcset="media/szauna-kalyha-640.webp 640w, media/szauna-kalyha-1200.webp 1200w, media/szauna-kalyha-1440.webp 1440w" sizes="(max-width: 599px) 92vw, 26vw" width="1440" height="1920" alt="Finn szauna belülről, középen a kályha kövekkel" decoding="async" loading="eager"></button></figure>
-      <span class="gal__tores gal__tores--2" aria-hidden="true"></span>
-      <figure class="gal__elem r-43" data-kat="tel kert"><button type="button" aria-label="Havazás a kertben, nagyítás"><img src="media/tel-havazas-1200.webp" srcset="media/tel-havazas-640.webp 640w, media/tel-havazas-1200.webp 1200w, media/tel-havazas-1920.webp 1920w" sizes="(max-width: 599px) 92vw, 46vw" width="1920" height="1440" alt="Havazás a kertben, ágak a faház fölött" decoding="async" loading="eager"></button></figure>
-      <span class="gal__tores gal__tores--3" aria-hidden="true"></span>
-      <figure class="gal__elem r-34" data-kat="bent"><button type="button" aria-label="Étkezősarok, nagyítás"><img src="media/etkezo-sarok-1200.webp" srcset="media/etkezo-sarok-640.webp 640w, media/etkezo-sarok-1200.webp 1200w, media/etkezo-sarok-1440.webp 1440w" sizes="(max-width: 599px) 92vw, 26vw" width="1440" height="1920" alt="Étkezősarok sötétzöld fallal, fehér faragott székekkel" decoding="async" loading="eager"></button></figure>
-      <span class="gal__tores gal__tores--4" aria-hidden="true"></span>
-      <figure class="gal__elem r-34" data-kat="wellness tel"><button type="button" aria-label="Szauna ablaka az erdőre, nagyítás"><img src="media/szauna-erdo-1200.webp" srcset="media/szauna-erdo-640.webp 640w, media/szauna-erdo-1200.webp 1200w, media/szauna-erdo-1440.webp 1440w" sizes="(max-width: 599px) 92vw, 26vw" width="1440" height="1920" alt="Szauna belülről, az ablakon túl fák" decoding="async" loading="lazy"></button></figure>
-      <figure class="gal__elem r-43" data-kat="bent"><button type="button" aria-label="Hálószoba, nagyítás"><img src="media/haloszoba-feher-1200.webp" srcset="media/haloszoba-feher-640.webp 640w, media/haloszoba-feher-1200.webp 1200w, media/haloszoba-feher-1920.webp 1920w" sizes="(max-width: 599px) 92vw, 46vw" width="1920" height="1440" alt="Hálószoba fekete-fehér mintás ágyneművel és fehér polccal" decoding="async" loading="lazy"></button></figure>
-      <figure class="gal__elem r-0897" data-kat="kert"><button type="button" aria-label="Szomorúfa a kertben, nagyítás"><img src="media/kert-fa-1200.webp" srcset="media/kert-fa-640.webp 640w, media/kert-fa-1200.webp 1200w, media/kert-fa-1534.webp 1534w" sizes="(max-width: 599px) 92vw, 30vw" width="1534" height="1711" alt="Nagy szomorúfa a kertben, alatta pihenőágy" decoding="async" loading="lazy"></button></figure>
-      <figure class="gal__elem r-34" data-kat="wellness tel"><button type="button" aria-label="Szaunadézsa, nagyítás"><img src="media/szauna-dezsa-1200.webp" srcset="media/szauna-dezsa-640.webp 640w, media/szauna-dezsa-1200.webp 1200w, media/szauna-dezsa-1440.webp 1440w" sizes="(max-width: 599px) 92vw, 26vw" width="1440" height="1920" alt="Szaunavödör merőkanállal, az ablakon túl havas táj" decoding="async" loading="lazy"></button></figure>
-      <figure class="gal__elem r-34" data-kat="bent wellness"><button type="button" aria-label="Kandalló, nagyítás"><img src="media/kandallo-1200.webp" srcset="media/kandallo-640.webp 640w, media/kandallo-640.webp 640w, media/kandallo-1200.webp 1200w, media/kandallo-1200.webp 1200w, media/kandallo-1440.webp 1440w, media/kandallo-1920.webp 1920w" sizes="(max-width: 599px) 92vw, 26vw" width="1920" height="1440" alt="Fekete kandalló, alatta hasábfa" decoding="async" loading="lazy"></button></figure>
-      <figure class="gal__elem r-34" data-kat="kert"><button type="button" aria-label="Padok a fák alatt, nagyítás"><img src="media/kert-padok-1200.webp" srcset="media/kert-padok-640.webp 640w, media/kert-padok-1200.webp 1200w, media/kert-padok-1440.webp 1440w" sizes="(max-width: 599px) 92vw, 26vw" width="1440" height="1920" alt="Farönk padok a nagy fák alatt a kertben" decoding="async" loading="lazy"></button></figure>
-      <figure class="gal__elem r-34" data-kat="bent"><button type="button" aria-label="Zuhanyzó, nagyítás"><img src="media/zuhany-1200.webp" srcset="media/zuhany-640.webp 640w, media/zuhany-1200.webp 1200w, media/zuhany-1440.webp 1440w" sizes="(max-width: 599px) 92vw, 26vw" width="1440" height="1920" alt="Zuhanyzó sötét csempével, mellette fapolc törölközőkkel" decoding="async" loading="lazy"></button></figure>
-    </div>
-  </div>
-
-  <section class="gal-zaro" aria-labelledby="gz-cim">
-    <div class="wrap">
-      <h2 class="d3" id="gz-cim">Szobáról szobára</h2>
-      <p>A terek leírása, a felszereltség és a házirend <a class="lnk" href="a-haz.html">A ház oldalon</a> van.</p>
+      <ul class="csempek" data-galeria>
+        <li data-kat="tel kert"><button class="cs" type="button" data-nagy="media/tel-fenyok-1920.webp" aria-label="Nagyítás: havas fenyők a kertben"><img src="media/tel-fenyok-1200.webp" srcset="media/tel-fenyok-640.webp 640w, media/tel-fenyok-1200.webp 1200w, media/tel-fenyok-1920.webp 1920w" sizes="(max-width: 899px) 45vw, 230px" width="1920" height="1440" alt="Havas fenyők a kertben, mögöttük a ház" decoding="async" loading="eager"></button></li>
+        <li data-kat="wellness"><button class="cs" type="button" data-nagy="media/szauna-kalyha-1440.webp" aria-label="Nagyítás: szaunakályha"><img src="media/szauna-kalyha-1200.webp" srcset="media/szauna-kalyha-640.webp 640w, media/szauna-kalyha-1200.webp 1200w, media/szauna-kalyha-1440.webp 1440w" sizes="(max-width: 899px) 45vw, 230px" width="1440" height="1920" alt="Finn szauna belülről, középen a kályha kövekkel" decoding="async" loading="eager"></button></li>
+        <li data-kat="tel kert"><button class="cs" type="button" data-nagy="media/tel-havazas-1920.webp" aria-label="Nagyítás: havazás a kertben"><img src="media/tel-havazas-1200.webp" srcset="media/tel-havazas-640.webp 640w, media/tel-havazas-1200.webp 1200w, media/tel-havazas-1920.webp 1920w" sizes="(max-width: 899px) 45vw, 230px" width="1920" height="1440" alt="Havazás a kertben, ágak a faház fölött" decoding="async" loading="eager"></button></li>
+        <li data-kat="bent"><button class="cs" type="button" data-nagy="media/etkezo-sarok-1440.webp" aria-label="Nagyítás: étkezősarok"><img src="media/etkezo-sarok-1200.webp" srcset="media/etkezo-sarok-640.webp 640w, media/etkezo-sarok-1200.webp 1200w, media/etkezo-sarok-1440.webp 1440w" sizes="(max-width: 899px) 45vw, 230px" width="1440" height="1920" alt="Étkezősarok sötétzöld fallal, fehér faragott székekkel" decoding="async" loading="eager"></button></li>
+        <li data-kat="wellness tel"><button class="cs" type="button" data-nagy="media/szauna-erdo-1440.webp" aria-label="Nagyítás: a szauna ablaka a fákra"><img src="media/szauna-erdo-1200.webp" srcset="media/szauna-erdo-640.webp 640w, media/szauna-erdo-1200.webp 1200w, media/szauna-erdo-1440.webp 1440w" sizes="(max-width: 899px) 45vw, 230px" width="1440" height="1920" alt="Szauna belülről, az ablakon túl fák" decoding="async" loading="lazy"></button></li>
+        <li data-kat="bent"><button class="cs" type="button" data-nagy="media/haloszoba-feher-1920.webp" aria-label="Nagyítás: hálószoba"><img src="media/haloszoba-feher-1200.webp" srcset="media/haloszoba-feher-640.webp 640w, media/haloszoba-feher-1200.webp 1200w, media/haloszoba-feher-1920.webp 1920w" sizes="(max-width: 899px) 45vw, 230px" width="1920" height="1440" alt="Hálószoba fekete-fehér mintás ágyneművel és fehér polccal" decoding="async" loading="lazy"></button></li>
+        <li data-kat="kert"><button class="cs" type="button" data-nagy="media/kert-fa-1534.webp" aria-label="Nagyítás: szomorúfa a kertben"><img src="media/kert-fa-1200.webp" srcset="media/kert-fa-640.webp 640w, media/kert-fa-1200.webp 1200w, media/kert-fa-1534.webp 1534w" sizes="(max-width: 899px) 45vw, 230px" width="1534" height="1711" alt="Nagy szomorúfa a kertben, alatta pihenőágy" decoding="async" loading="lazy"></button></li>
+        <li data-kat="wellness tel"><button class="cs" type="button" data-nagy="media/szauna-dezsa-1440.webp" aria-label="Nagyítás: szaunavödör"><img src="media/szauna-dezsa-1200.webp" srcset="media/szauna-dezsa-640.webp 640w, media/szauna-dezsa-1200.webp 1200w, media/szauna-dezsa-1440.webp 1440w" sizes="(max-width: 899px) 45vw, 230px" width="1440" height="1920" alt="Szaunavödör merőkanállal, az ablakon túl havas táj" decoding="async" loading="lazy"></button></li>
+        <li data-kat="kert"><button class="cs" type="button" data-nagy="media/kert-padok-1440.webp" aria-label="Nagyítás: padok a fák alatt"><img src="media/kert-padok-1200.webp" srcset="media/kert-padok-640.webp 640w, media/kert-padok-1200.webp 1200w, media/kert-padok-1440.webp 1440w" sizes="(max-width: 899px) 45vw, 230px" width="1440" height="1920" alt="Farönk padok a nagy fák alatt a kertben" decoding="async" loading="lazy"></button></li>
+        <li data-kat="bent"><button class="cs" type="button" data-nagy="media/zuhany-1440.webp" aria-label="Nagyítás: zuhanyzó"><img src="media/zuhany-1200.webp" srcset="media/zuhany-640.webp 640w, media/zuhany-1200.webp 1200w, media/zuhany-1440.webp 1440w" sizes="(max-width: 899px) 45vw, 230px" width="1440" height="1920" alt="Zuhanyzó sötét csempével, mellette fapolc törölközőkkel" decoding="async" loading="lazy"></button></li>
+      </ul>
     </div>
   </section>
-</main>
-<footer class="lab">
-  <div class="wrap">
-    <div class="lab__fo">
-      <div class="lab__marka">
-        <a class="logo" href="index.html"><span class="logo__nev" translate="no">HappyNest</span><span class="logo__hely">Vendégház, Gyód</span></a>
-        <p>Teljes ház legfeljebb 8 vendégnek, Pécstől 5 km-re, a Mecsekre néző gyódi domboldalon.</p>
-      </div>
-      <nav class="lab__nav" aria-label="Lábléc navigáció">
-        <h2>Oldalak</h2>
-        <ul><li><a href="index.html">Főoldal</a></li><li><a href="a-haz.html">A ház</a></li><li><a href="galeria.html">Galéria</a></li><li><a href="kapcsolat.html">Foglaltság és kapcsolat</a></li></ul>
-      </nav>
-      <div class="lab__adat">
-        <h2>Elérhetőség</h2>
-        <ul>
-          <li><a href="tel:+36203726984">+36 20 372 6984</a></li>
-          <li><a href="mailto:happynest.vendeghaz@gmail.com">happynest.vendeghaz@gmail.com</a></li>
-          <li><a href="https://www.facebook.com/profile.php?id=100092262921616" rel="noopener">Facebook</a></li>
-        </ul>
-        <p class="halk-s">7668 Gyód, hrsz. 612/2</p>
+
+  <section class="galzaro sz" aria-labelledby="gz-cim">
+    <div class="wrap racs">
+      <h2 id="gz-cim">Szobáról szobára</h2>
+      <p>A terek leírása, a felszereltség és a házirend <a class="be" href="a-haz.html">A ház oldalon</a> van. A szabad napokat a <a class="be" href="kapcsolat.html#foglaltsag">naptárban</a> nézheted meg.</p>
+    </div>
+  </section>
+
+  <dialog class="nagyito" data-nagyito aria-label="Képnagyító">
+    <div class="nagyito__in">
+      <img data-nagyito-img src="media/tel-fenyok-1200.webp" alt="Havas fenyők a kertben, mögöttük a ház" width="1920" height="1440">
+      <div class="nagyito__sav">
+        <p data-nagyito-felirat></p>
+        <p class="nagyito__szam" data-nagyito-szam></p>
+        <div class="nagyito__gombok">
+          <button type="button" data-nagyito-elozo>Előző</button>
+          <button type="button" data-nagyito-kov>Következő</button>
+          <button type="button" data-nagyito-zar>Bezár</button>
+        </div>
       </div>
     </div>
-    <div class="lab__also"><span>© 2026 HappyNest Vendégház</span><span>NTAK-regisztrációs szám: MA25107793</span><span>Fotók: HappyNest Vendégház</span></div>
+  </dialog>
+</main>
+
+<footer class="lab">
+  <div class="wrap lab__in">
+    <div class="lab__marka">
+      <p class="logo"><span class="logo__nev" translate="no">HappyNest</span><span class="logo__hely">Vendégház, Gyód</span></p>
+      <p>Teljes ház legfeljebb 8 vendégnek, Pécstől 5 km-re, a Mecsekre néző gyódi domboldalon.</p>
+    </div>
+    <nav class="lab__nav" aria-label="Lábléc navigáció"><h2>Oldalak</h2><ul><li><a href="index.html">Főoldal</a></li><li><a href="a-haz.html">A ház</a></li><li><a href="galeria.html">Galéria</a></li><li><a href="kapcsolat.html">Szabad napok és kapcsolat</a></li></ul></nav>
+    <div class="lab__adat">
+      <h2>Elérhetőség</h2>
+      <ul><li><a href="tel:+36203726984">+36 20 372 6984</a></li><li><a href="mailto:happynest.vendeghaz@gmail.com">happynest.vendeghaz@gmail.com</a></li><li><a href="https://www.facebook.com/profile.php?id=100092262921616" rel="noopener">Facebook</a></li></ul>
+      <p>7668 Gyód, hrsz. 612/2</p>
+    </div>
   </div>
+  <div class="wrap lab__also"><span>© 2026 HappyNest Vendégház</span><span>NTAK-regisztrációs szám: MA25107793</span><span>Fotók: HappyNest Vendégház</span></div>
 </footer>
-<div class="lb" id="nagyito" role="dialog" aria-modal="true" aria-label="Képnagyító" hidden>
-  <div class="lb__fej"><p class="lb__szaml" data-lb-szaml aria-live="polite">1 / 11</p><button type="button" data-lb-zar>Bezár<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
-  <div class="lb__kep"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="" width="1" height="1"></div>
-  <div class="lb__lab"><button type="button" data-lb-elozo><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Előző kép</button><button type="button" data-lb-kov>Következő kép<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div>
-</div>
-<script src="js/vendor/gsap.min.js" defer></script>
-<script src="js/vendor/ScrollTrigger.min.js" defer></script>
-<script src="js/vendor/Flip.min.js" defer></script>
-<script src="js/vendor/lenis.min.js" defer></script>
-<script src="js/site.js" defer></script>
+<script src="js/galeria.js?v=7" defer></script>
+<script src="js/hn.js?v=7" defer></script>
 </body>
 </html>
+

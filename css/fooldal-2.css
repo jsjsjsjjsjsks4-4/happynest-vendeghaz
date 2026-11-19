@@ -1,0 +1,110 @@
+/* HappyNest v5 · Főoldal 2 (index-2.html, 2026-11-19, kanban t_87b4ffd5).
+   Csak az index-2.html tölti be, a meglévő CSS-ek UTÁN. A meglévő fájlok nem változnak.
+   1. Tónus-ritmus: a szakasz maga a felület, sáv és vonal nélkül.
+      len #F6F1E9 (--alap) · mélyebb homok #ECE3D4 (az egyetlen új szín) · egy meleg sötét szakasz #2E2924 (wellness) + lábléc.
+      Homokon az akcent szövegszíne a paletta meglévő sötétebb tagja (#815936, 4,8:1), mert a #8E6139 ott csak 4,2:1.
+   2. Signature: Nyáron / Télen váltó a kert képeinél (két gomb, aria-pressed, áttűnés 0,45 s, reduced-motion alatt azonnal).
+   3. Élő réteg: maszkos kép-felfedés a wellness-képeken (0,5 s), a tények egymás után úsznak be (0,4 s),
+      három szó szerinti szallas.hu-vélemény lassan vált, kézzel lapozható és megállítható. */
+
+:root{--homok:#ECE3D4}
+
+/* ---------- tónus ---------- */
+.homok{background:var(--homok);--akcent-sz:var(--gomb-hover)}
+.homok .kp,.homok figure{background:var(--felulet)}
+.p-fo2 .sotet .kicker{color:var(--s-akcent)}
+.p-fo2 .sotet .wp p{color:var(--s-halk)}
+.p-fo2 .sotet .kp{background:var(--s-vonal)}
+.p-fo2 .zaro.homok .zaro__tel{color:var(--szoveg);border-bottom-color:var(--akcent-sz)}
+.p-fo2 .zaro.homok .zaro__tel:hover{border-bottom-color:var(--szoveg)}
+.p-fo2 .zaro.homok .zaro__adat dt{color:var(--halk)}
+
+/* ---------- Fészek: tény-sor + a 9,8-as pecsét ---------- */
+.tenysor__pecset{grid-column:1 / -1;display:flex;align-items:center;gap:1rem;margin-top:.5rem}
+.tenysor .tenysor__pecset dd{margin-top:0}
+.tenysor__pecset dd > span{display:block}
+.nw{white-space:nowrap}
+.pecset{display:inline-grid;place-items:center;width:4.25rem;height:4.25rem;border-radius:50%;border:1px solid var(--akcent-sz);box-shadow:inset 0 0 0 4px var(--homok),inset 0 0 0 5px var(--akcent-sz);color:var(--akcent-sz);font-family:var(--serif);font-size:1.375rem;font-weight:500;line-height:1}
+.js .feszek__szoveg[data-r] .tenysor > div{opacity:0;transform:translateY(6px);transition:opacity .4s var(--ease),transform .4s var(--ease)}
+.js .feszek__szoveg[data-r] .tenysor > .tenysor__pecset{transform:scale(1.08);transform-origin:2.1rem 50%}
+.js .feszek__szoveg.is-be .tenysor > div{opacity:1;transform:none}
+.js .feszek__szoveg.is-be .tenysor > div:nth-child(2){transition-delay:.07s}
+.js .feszek__szoveg.is-be .tenysor > div:nth-child(3){transition-delay:.14s}
+.js .feszek__szoveg.is-be .tenysor > div:nth-child(4){transition-delay:.21s}
+.js .feszek__szoveg.is-be .tenysor > div:nth-child(5){transition-delay:.32s}
+
+/* ---------- Wellness (sötét): maszkos felfedés, egy elem egy mozgás ---------- */
+.js [data-maszk]{clip-path:inset(7% 7% 7% 7% round var(--r))}
+.js [data-maszk].is-be{clip-path:inset(0 0 0 0 round var(--r));transition:clip-path .5s var(--ease)}
+
+/* ---------- Vendégvélemények: a bal oszlopban cím és vezérlő, jobbra az idézet ---------- */
+.p-fo2 .velemeny .racs{align-items:start;row-gap:2rem}
+.velemeny__bal{display:grid;gap:1.25rem;justify-items:start;align-content:start}
+.p-fo2 .idezet{overflow:visible;border-radius:0;background:none}
+.idezetek{display:grid;gap:2.5rem}
+.idezet blockquote{margin:0}
+.idezet blockquote p{font-family:var(--serif);font-size:1.5rem;line-height:1.3;font-weight:400;max-width:30ch;text-wrap:balance}
+.p-fo2 .idezet figcaption{margin-top:1.1rem;font-size:var(--t-cimke);font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--halk);line-height:1.5}
+.js .idezetek{gap:0}
+.js .idezet{grid-area:1 / 1;opacity:0;visibility:hidden;transition:opacity .45s var(--ease),visibility 0s linear .45s}
+.js .idezet.is-aktiv{opacity:1;visibility:visible;transition:opacity .45s var(--ease),visibility 0s linear 0s}
+.idezet-vez{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1rem}
+.idezet-vez[hidden]{display:none}
+.idezet-vez__hol{font-size:1rem;color:var(--halk);font-variant-numeric:tabular-nums;min-width:3.25rem;text-align:center}
+.kor-gomb{display:inline-flex;align-items:center;justify-content:center;width:2.75rem;height:2.75rem;padding:0;border:1px solid var(--halk);border-radius:var(--r);background:transparent;color:var(--szoveg);cursor:pointer;transition:background-color .2s var(--ease)}
+.kor-gomb:hover{background:var(--felulet)}
+.idezet-vez__allj{display:inline-flex;align-items:center;min-height:2.75rem;padding:0;border:0;background:none;color:var(--szoveg);font:500 1rem/1.3 var(--sans);cursor:pointer;text-decoration:underline;text-decoration-color:var(--akcent);text-decoration-thickness:1px;text-underline-offset:.3em}
+.idezet-vez__allj:hover{text-decoration-color:currentColor}
+.idezet-vez__allj[hidden]{display:none}
+@media (min-width:761px){
+  .p-fo2 .velemeny__bal{grid-column:1 / 6}
+  .p-fo2 .idezetek{grid-column:6 / 13}
+  .idezet blockquote p{font-size:1.875rem}
+}
+@media (min-width:1200px){.idezet blockquote p{font-size:2rem}}
+/* mobilon az idézet közvetlenül a cím alatt, a vezérlő és a link utána */
+@media (max-width:760px){
+  .p-fo2 .velemeny__bal{display:contents}
+  .p-fo2 .velemeny__bal > *{grid-column:1 / -1;justify-self:start}
+  .p-fo2 .velemeny__bal h2{order:1}
+  .p-fo2 .idezetek{order:2}
+  .p-fo2 .idezet-vez{order:3}
+  .p-fo2 .velemeny__bal .lnk{order:4;margin-top:-1rem}
+}
+
+/* ---------- Kert: Nyáron / Télen váltó (signature) ---------- */
+.evszak-valto{display:inline-flex;flex:none;gap:3px;padding:3px;border:1px solid var(--halk);border-radius:var(--r);background:var(--alap)}
+.evszak-valto[hidden]{display:none}
+.evszak-valto button{display:inline-flex;align-items:center;justify-content:center;min-height:2.75rem;min-width:5.5rem;padding-left:1.1rem;padding-right:1.1rem;border:0;border-radius:4px;background:transparent;color:var(--szoveg);font:600 1rem/1.2 var(--sans);cursor:pointer;transition:background-color .2s var(--ease),color .2s var(--ease)}
+.evszak-valto button:hover{background:var(--homok)}
+.evszak-valto button[aria-pressed="true"]{background:var(--akcent-sz);color:var(--alap)}
+.evszak-valto button:focus-visible{outline:2px solid var(--szoveg);outline-offset:2px}
+.p-fo2 .ev{overflow:visible;border-radius:0;background:none}
+.evszak{display:grid;gap:var(--res-2)}
+.evszak__lap{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--res);row-gap:1.75rem}
+.ev{grid-column:1 / -1}
+.ev .kp{aspect-ratio:4 / 3}
+.js .evszak{gap:0}
+.js .evszak__lap{grid-area:1 / 1;opacity:0;visibility:hidden;transition:opacity .45s var(--ease),visibility 0s linear .45s}
+.js .evszak[data-evszak="nyar"] [data-evszak-lap="nyar"],
+.js .evszak[data-evszak="tel"] [data-evszak-lap="tel"]{opacity:1;visibility:visible;transition:opacity .45s var(--ease),visibility 0s linear 0s}
+@media (min-width:761px){
+  .evszak__lap{grid-template-rows:auto auto;row-gap:0}
+  .ev{display:grid;grid-template-rows:subgrid;grid-row:span 2}
+  .ev--nagy{grid-column:1 / 8}
+  .ev--kis{grid-column:8 / 13}
+  .ev--nagy .kp{aspect-ratio:3 / 2}
+  .ev--kis .kp{aspect-ratio:auto}
+}
+@supports not (grid-template-rows:subgrid){
+  @media (min-width:761px){.ev{display:block}.ev--kis .kp{aspect-ratio:1 / 1}}
+}
+@media (max-width:760px){.kert__fej{flex-wrap:wrap}}
+
+/* ---------- reduced-motion: komponált végállapot, a váltók áttűnés nélkül működnek ---------- */
+@media (prefers-reduced-motion:reduce){
+  .js [data-maszk],.js [data-maszk].is-be{clip-path:none;transition:none}
+  .js .feszek__szoveg[data-r] .tenysor > div,.js .feszek__szoveg[data-r] .tenysor > .tenysor__pecset{opacity:1;transform:none;transition:none}
+  .js .evszak__lap,.js .idezet,.js .evszak[data-evszak] [data-evszak-lap],.js .idezet.is-aktiv{transition:none}
+  .evszak-valto button,.kor-gomb{transition:none}
+}

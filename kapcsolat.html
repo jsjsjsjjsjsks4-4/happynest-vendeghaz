@@ -4,144 +4,132 @@
 <meta charset="utf-8">
   <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>document.documentElement.className+=' js';</script>
-<title>Szabad napok és kapcsolat · HappyNest Vendégház Gyód</title>
-<meta name="description" content="Nézd meg a HappyNest Vendégház szabad napjait, és küldj érdeklődést a kiválasztott dátumokra. Telefon: +36 20 372 6984, Gyód, Pécs mellett.">
-<!-- canonical: a domain még nyitott. Élesítéskor: <link rel="canonical" href="https://DOMAIN/kapcsolat"> -->
+<script>(function(d){d.className+=' js';try{var p=new URLSearchParams(location.search).get('paletta');if(p&&/^[abc]$/.test(p))sessionStorage.setItem('hn-paletta',p);var s=sessionStorage.getItem('hn-paletta');if(s)d.setAttribute('data-paletta',s)}catch(e){}})(document.documentElement);</script>
+<title>Szabad napok és kapcsolat · HappyNest Vendégház, Gyód</title>
+<meta name="description" content="Nézd meg, mely éjszakák szabadok a HappyNest Vendégházban, és küldj érdeklődést. Telefon: +36 20 372 6984.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="hu_HU">
-<meta property="og:title" content="Szabad napok és kapcsolat · HappyNest Vendégház">
-<meta property="og:description" content="Foglaltsági naptár és érdeklődés a gyódi vendégházba.">
-<meta property="og:image" content="media/jakuzzi-este-1200.webp">
-<meta name="theme-color" content="#EEF0EA">
+<meta property="og:title" content="Szabad napok és kapcsolat · HappyNest Vendégház, Gyód">
+<meta property="og:description" content="Nézd meg, mely éjszakák szabadok a HappyNest Vendégházban, és küldj érdeklődést. Telefon: +36 20 372 6984.">
+<meta property="og:image" content="media/nyito-szeles-1200.webp">
+<meta name="theme-color" content="#F6F1E9">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="css/site.css">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[
- {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Főoldal","item":"index.html"},{"@type":"ListItem","position":2,"name":"Foglaltság és kapcsolat"}]},
- {"@type":"ContactPage","name":"Foglaltság és kapcsolat","about":{"@type":"LodgingBusiness","name":"HappyNest Vendégház","telephone":"+36 20 372 6984","email":"happynest.vendeghaz@gmail.com"}}
-]}
-</script>
+<link rel="stylesheet" href="js/vendor/lenis.css?v=7">
+<link rel="stylesheet" href="css/paletta.css?v=7">
+<link rel="stylesheet" href="css/alap.css?v=7">
+<link rel="stylesheet" href="css/oldalak.css?v=7">
+<link rel="stylesheet" href="css/aloldal.css?v=7">
 </head>
 <body class="p-kap">
-<a class="skip" href="#tartalom">Ugrás a tartalomra</a>
-<header class="nav" id="nav">
-  <div class="wrap nav__in">
+<a class="ugro" href="#tartalom">Ugrás a tartalomra</a>
+<header class="fej" data-fej>
+  <div class="wrap fej__in">
     <a class="logo" href="index.html"><span class="logo__nev" translate="no">HappyNest</span><span class="logo__hely">Vendégház, Gyód</span></a>
-    <nav class="nav__menu" aria-label="Fő navigáció"><a href="a-haz.html">A ház</a><a href="galeria.html">Galéria</a><a href="kapcsolat.html" aria-current="page">Foglaltság és kapcsolat</a><a class="nav__tel" href="tel:+36203726984">+36 20 372 6984</a></nav>
-    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu"><span class="nav__toggle-txt">Menü</span><span class="nav__toggle-ikon" aria-hidden="true"></span></button>
+    <nav class="fej__nav" aria-label="Fő navigáció"><a href="index.html">Főoldal</a><a href="a-haz.html">A ház</a><a href="galeria.html">Galéria</a><a href="kapcsolat.html" aria-current="page">Szabad napok és kapcsolat</a></nav>
+    <button class="fej__menu" type="button" aria-expanded="false" aria-controls="menu" data-menu-nyit>Menü</button>
   </div>
 </header>
-<div class="menu" id="menu" aria-hidden="true">
-  <nav aria-label="Mobil navigáció"><ul class="menu__lista"><li><a href="index.html">Főoldal</a></li><li><a href="a-haz.html">A ház</a></li><li><a href="galeria.html">Galéria</a></li><li><a href="kapcsolat.html" aria-current="page">Foglaltság és kapcsolat</a></li></ul></nav>
-  <div class="menu__lab"><a href="tel:+36203726984">+36 20 372 6984</a><a href="mailto:happynest.vendeghaz@gmail.com">happynest.vendeghaz@gmail.com</a></div>
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menü" data-menu hidden>
+  <div class="wrap menu__in">
+    <div class="menu__fej"><span class="logo__nev" translate="no">HappyNest</span><button class="fej__menu" type="button" data-menu-zar>Bezár</button></div>
+    <nav aria-label="Mobil navigáció"><ul class="menu__lista"><li><a href="index.html">Főoldal</a></li><li><a href="a-haz.html">A ház</a></li><li><a href="galeria.html">Galéria</a></li><li><a href="kapcsolat.html" aria-current="page">Szabad napok és kapcsolat</a></li></ul></nav>
+    <p class="menu__lab"><a href="tel:+36203726984">+36 20 372 6984</a><a href="mailto:happynest.vendeghaz@gmail.com">happynest.vendeghaz@gmail.com</a></p>
+  </div>
 </div>
+
 <main id="tartalom">
-  <header class="k-fej">
-    <div class="wrap g12">
-      <h1>Szabad napok és érdeklődés</h1>
-      <p class="k-fej__lead lead halk">Az oldalon nem lehet foglalni. Nézd meg, mely éjszakák szabadok, jelöld ki az érkezést és a távozást, és küldd el az érdeklődést. Telefonon is szívesen segítünk.</p>
-      <div class="k-fej__hird">
+  <section class="kapfej" aria-labelledby="kap-cim" data-elso>
+    <div class="wrap racs">
+      <h1 id="kap-cim">Szabad napok és érdeklődés</h1>
+      <p class="lead kapfej__lead">Az oldalon nem lehet foglalni. Nézd meg, mely éjszakák szabadok, jelöld ki az érkezést és a távozást, és küldd el az érdeklődést. Telefonon is szívesen segítünk.</p>
+      <div class="kapfej__hird">
         <p class="cimke">Foglalható hirdetéseink</p>
-        <a href="https://szallas.hu/happynest-vendeghaz-gyod" rel="noopener">szallas.hu</a>
-        <a href="https://www.airbnb.hu/rooms/1603705060243031499" rel="noopener">Airbnb</a>
+        <p><a class="lnk" href="https://szallas.hu/happynest-vendeghaz-gyod" rel="noopener">szallas.hu</a> <a class="lnk" href="https://www.airbnb.hu/rooms/1603705060243031499" rel="noopener">Airbnb</a></p>
       </div>
     </div>
-  </header>
+  </section>
 
-  <section class="naptar dark" id="foglaltsag" aria-labelledby="nap-cim" data-hn-naptar data-hn-forras="minta">
+  <section class="naptar" id="foglaltsag" aria-labelledby="nt-cim" data-hn-naptar>
     <div class="wrap">
       <div class="naptar__fej">
-        <div class="naptar__cim"><h2 class="d2" id="nap-cim">Foglaltság</h2><p class="minta-jel" data-minta-jel hidden>Mintaadat, a valódi foglaltság hamarosan</p></div>
-        <div class="naptar__eszk">
-          <div class="naptar__lapoz">
-            <button type="button" data-cal-elozo aria-label="Előző hónap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-            <button type="button" data-cal-kovetkezo aria-label="Következő hónap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
-          </div>
+        <h2 id="nt-cim">Foglaltság</h2>
+        <p class="minta-jel" data-minta-jel data-allapot="minta" hidden>Mintaadat, a valódi foglaltság hamarosan</p>
+        <p class="naptar__frissult cimke" data-cal-frissult hidden></p>
+        <div class="naptar__lapoz">
+          <button class="gomb gomb--vonal" type="button" data-cal-elozo aria-label="Előző hónap">Előző</button>
+          <button class="gomb gomb--vonal" type="button" data-cal-kovetkezo aria-label="Következő hónap">Következő</button>
         </div>
       </div>
       <div class="honapok" data-cal-honapok>
-        <p class="halk">A naptár betöltése…</p>
+        <p class="halk" data-cal-betolt>A naptár betöltése</p>
       </div>
       <div class="naptar__also">
         <div class="naptar__jel">
           <p class="jelmag"><span><i aria-hidden="true"></i>Szabad éjszaka</span><span><i class="f" aria-hidden="true"></i>Foglalt éjszaka</span><span><i class="v" aria-hidden="true"></i>Kijelölt nap</span></p>
           <p class="halk">Egy nap az aznap kezdődő éjszakát jelenti. A távozás napján már új vendég érkezhet, ezért olyan napon is távozhatsz, amelynek az éjszakája foglalt.</p>
-          <p class="naptar__frissult" data-cal-frissult hidden></p>
         </div>
         <div class="naptar__valasztas">
           <p class="naptar__osszeg" data-cal-osszeg aria-live="polite"></p>
           <p class="naptar__hiba" data-cal-hiba role="alert" hidden></p>
-          <div class="hero__cta"><button type="button" class="lnk lnk--gomb" data-cal-torol hidden>Kijelölés törlése</button><a class="btn btn--lampa" href="#erdeklodes" data-cal-erdeklodes>Érdeklődöm ezekre a napokra</a></div>
+          <div class="sorgomb"><button class="lnk lnk--gomb" type="button" data-cal-torol hidden>Kijelölés törlése</button><a class="gomb" href="#erdeklodes" data-cal-erdeklodes>Érdeklődöm ezekre a napokra</a></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="urlap-szek" id="erdeklodes" aria-labelledby="url-cim">
-    <div class="wrap g12">
-      <h2 class="d2" id="url-cim">Érdeklődés</h2>
-      <p class="urlap-szek__lead lead">Írd meg, mikor jönnétek és hányan. Ha a naptárban kijelöltél napokat, azok már benne vannak az űrlapban.</p>
-      <form class="urlap" id="urlap" novalidate>
+  <section class="erdek sz" id="erdeklodes" aria-labelledby="erd-cim">
+    <div class="wrap racs">
+      <div class="erdek__fej">
+        <h2 id="erd-cim">Érdeklődés</h2>
+        <p class="lead">Írd meg, mikor jönnétek és hányan. Ha a naptárban kijelöltél napokat, azok már benne vannak az űrlapban. A válaszban megírjuk az árat is.</p>
+      </div>
+      <form class="ur" data-urlap novalidate action="https://api.web3forms.com/submit" method="post">
         <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
         <input type="hidden" name="from_name" value="HappyNest weboldal">
-        <input type="checkbox" name="botcheck" class="sr-only" tabindex="-1" aria-hidden="true">
-        <div class="mezo"><label for="nev">Név</label><input id="nev" name="nev" type="text" autocomplete="name" required></div>
-        <div class="mezo"><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="email" spellcheck="false" required></div>
-        <div class="mezo"><label for="telefon">Telefon <span class="opc">(nem kötelező)</span></label><input id="telefon" name="telefon" type="tel" autocomplete="tel"></div>
-        <div class="mezo"><label for="vendegek">Vendégek száma</label><select id="vendegek" name="vendegek"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></div>
-        <div class="mezo"><label for="erkezes">Érkezés</label><input id="erkezes" name="erkezes" type="date" required></div>
-        <div class="mezo"><label for="tavozas">Távozás</label><input id="tavozas" name="tavozas" type="date" required></div>
-        <fieldset class="mezo mezo--szeles radiok"><legend>Hoztok kisállatot?</legend><div><label><input type="radio" name="kisallat" value="nem" checked>Nem</label><label><input type="radio" name="kisallat" value="igen">Igen</label></div></fieldset>
-        <div class="mezo mezo--szeles"><label for="uzenet">Üzenet</label><textarea id="uzenet" name="uzenet" rows="5"></textarea></div>
-        <div class="jelolo"><input id="hozzajarulas" name="hozzajarulas" type="checkbox" required><label for="hozzajarulas">Hozzájárulok, hogy a HappyNest Vendégház a megadott adataimat az érdeklődésem megválaszolásához kezelje.</label></div>
-        <div class="urlap__kuld"><button class="btn" type="submit">Érdeklődés elküldése</button></div>
-        <p class="urlap__allapot" data-urlap-allapot tabindex="-1" role="status" hidden></p>
+        <input type="hidden" name="subject" value="Új érdeklődés a HappyNest weboldalról">
+        <div class="ur__csapda" aria-hidden="true"><input type="checkbox" name="botcheck" tabindex="-1"></div>
+        <div class="ur__mezo"><label for="m-nev">Név *</label><input id="m-nev" name="nev" type="text" autocomplete="name" required><p class="ur__hiba" id="h-nev" data-mezo-hiba="nev" hidden></p></div>
+        <div class="ur__mezo"><label for="m-email">E-mail *</label><input id="m-email" name="email" type="email" autocomplete="email" spellcheck="false" required><p class="ur__hiba" id="h-email" data-mezo-hiba="email" hidden></p></div>
+        <div class="ur__mezo"><label for="m-tel">Telefon</label><input id="m-tel" name="telefon" type="tel" autocomplete="tel"></div>
+        <div class="ur__mezo"><label for="m-vendeg">Vendégek száma</label><select id="m-vendeg" name="vendegek"><option value="">Válassz</option><option>1 fő</option><option>2 fő</option><option>3 fő</option><option>4 fő</option><option>5 fő</option><option>6 fő</option><option>7 fő</option><option>8 fő</option></select></div>
+        <div class="ur__mezo"><label for="m-erk">Érkezés *</label><input id="m-erk" name="erkezes" type="date" required><p class="ur__hiba" id="h-erkezes" data-mezo-hiba="erkezes" hidden></p></div>
+        <div class="ur__mezo"><label for="m-tav">Távozás *</label><input id="m-tav" name="tavozas" type="date" required><p class="ur__hiba" id="h-tavozas" data-mezo-hiba="tavozas" hidden></p></div>
+        <div class="ur__mezo ur__mezo--szeles"><label for="m-allat">Kisállat</label><select id="m-allat" name="kisallat"><option value="">Nem hozunk</option><option>Kutya</option><option>Macska</option><option>Más</option></select></div>
+        <div class="ur__mezo ur__mezo--szeles"><label for="m-uzenet">Üzenet</label><textarea id="m-uzenet" name="uzenet" rows="4"></textarea></div>
+        <div class="ur__mezo ur__mezo--szeles"><label class="ur__jelolo" for="m-hozza"><input id="m-hozza" name="hozzajarulas" type="checkbox" value="igen" required> <span>Hozzájárulok, hogy az adataimat az érdeklődés megválaszolására kezeljék *</span></label><p class="ur__hiba" id="h-hozzajarulas" data-mezo-hiba="hozzajarulas" hidden></p></div>
+        <div class="ur__kuld ur__mezo--szeles"><button class="gomb" type="submit">Érdeklődés elküldése</button><p class="ur__allapot" data-urlap-allapot role="status"></p></div>
       </form>
-      <div class="elerhet">
-        <p class="cimke">Telefon</p>
-        <a href="tel:+36203726984">+36 20 372 6984</a>
-        <p class="cimke">E-mail</p>
-        <a class="mail" href="mailto:happynest.vendeghaz@gmail.com">happynest.vendeghaz@gmail.com</a>
-        <p class="cimke">Cím</p>
-        <p class="nagy">7668 Gyód, hrsz. 612/2</p>
-        <p><a class="lnk" href="https://www.google.com/maps/search/?api=1&amp;query=7668%20Gy%C3%B3d" rel="noopener">Gyód a térképen</a></p>
-        <p class="cimke">Érkezés és távozás</p>
-        <p>Érkezés 14:00 és éjfél között, önállóan, kulcsdobozzal. Távozás 10:00-ig.</p>
-      </div>
+      <dl class="elerhet">
+        <div><dt>Telefon</dt><dd><a class="lnk" href="tel:+36203726984">+36 20 372 6984</a></dd></div>
+        <div><dt>E-mail</dt><dd><a class="lnk" href="mailto:happynest.vendeghaz@gmail.com">happynest.vendeghaz@gmail.com</a></dd></div>
+        <div><dt>Cím</dt><dd>7668 Gyód, hrsz. 612/2<br><a class="lnk" href="https://www.google.com/maps/search/?api=1&amp;query=7668%20Gy%C3%B3d" rel="noopener">Gyód a térképen</a></dd></div>
+        <div><dt>Érkezés és távozás</dt><dd>Érkezés 14:00 és éjfél között, önállóan, kulcsdobozzal. Távozás 10:00-ig.</dd></div>
+      </dl>
     </div>
   </section>
 </main>
+
 <footer class="lab">
-  <div class="wrap">
-    <div class="lab__fo">
-      <div class="lab__marka">
-        <a class="logo" href="index.html"><span class="logo__nev" translate="no">HappyNest</span><span class="logo__hely">Vendégház, Gyód</span></a>
-        <p>Teljes ház legfeljebb 8 vendégnek, Pécstől 5 km-re, a Mecsekre néző gyódi domboldalon.</p>
-      </div>
-      <nav class="lab__nav" aria-label="Lábléc navigáció">
-        <h2>Oldalak</h2>
-        <ul><li><a href="index.html">Főoldal</a></li><li><a href="a-haz.html">A ház</a></li><li><a href="galeria.html">Galéria</a></li><li><a href="kapcsolat.html">Foglaltság és kapcsolat</a></li></ul>
-      </nav>
-      <div class="lab__adat">
-        <h2>Elérhetőség</h2>
-        <ul>
-          <li><a href="tel:+36203726984">+36 20 372 6984</a></li>
-          <li><a href="mailto:happynest.vendeghaz@gmail.com">happynest.vendeghaz@gmail.com</a></li>
-          <li><a href="https://www.facebook.com/profile.php?id=100092262921616" rel="noopener">Facebook</a></li>
-        </ul>
-        <p class="halk-s">7668 Gyód, hrsz. 612/2</p>
-      </div>
+  <div class="wrap lab__in">
+    <div class="lab__marka">
+      <p class="logo"><span class="logo__nev" translate="no">HappyNest</span><span class="logo__hely">Vendégház, Gyód</span></p>
+      <p>Teljes ház legfeljebb 8 vendégnek, Pécstől 5 km-re, a Mecsekre néző gyódi domboldalon.</p>
     </div>
-    <div class="lab__also"><span>© 2026 HappyNest Vendégház</span><span>NTAK-regisztrációs szám: MA25107793</span><span>Fotók: HappyNest Vendégház</span></div>
+    <nav class="lab__nav" aria-label="Lábléc navigáció"><h2>Oldalak</h2><ul><li><a href="index.html">Főoldal</a></li><li><a href="a-haz.html">A ház</a></li><li><a href="galeria.html">Galéria</a></li><li><a href="kapcsolat.html">Szabad napok és kapcsolat</a></li></ul></nav>
+    <div class="lab__adat">
+      <h2>Elérhetőség</h2>
+      <ul><li><a href="tel:+36203726984">+36 20 372 6984</a></li><li><a href="mailto:happynest.vendeghaz@gmail.com">happynest.vendeghaz@gmail.com</a></li><li><a href="https://www.facebook.com/profile.php?id=100092262921616" rel="noopener">Facebook</a></li></ul>
+      <p>7668 Gyód, hrsz. 612/2</p>
+    </div>
   </div>
+  <div class="wrap lab__also"><span>© 2026 HappyNest Vendégház</span><span>NTAK-regisztrációs szám: MA25107793</span><span>Fotók: HappyNest Vendégház</span></div>
 </footer>
-<script src="js/vendor/gsap.min.js" defer></script>
-<script src="js/vendor/ScrollTrigger.min.js" defer></script>
-<script src="js/vendor/lenis.min.js" defer></script>
-<script src="data/foglaltsag-minta.js" defer></script>
-<script src="js/foglaltsag.js" defer></script>
-<script src="js/site.js" defer></script>
+<script src="data/minta.js?v=7" defer></script>
+<script src="js/naptar.js?v=7" defer></script>
+<script src="js/naptar-teljes.js?v=7" defer></script>
+<script src="js/urlap.js?v=7" defer></script>
+<script src="js/hn.js?v=7" defer></script>
 </body>
 </html>
+
