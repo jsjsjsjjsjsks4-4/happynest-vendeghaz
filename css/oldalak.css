@@ -4,23 +4,74 @@
 figure{position:relative;overflow:hidden;border-radius:var(--r);background:var(--felulet)}
 figure img{width:100%;height:100%;object-fit:cover}
 
-/* ---------- első képernyő (főoldal, A ház): a kép a maradék magasságot tölti ki, a hajtásnál nem vágódik ---------- */
-.nyito__in,.lapfej__in{display:grid;height:max(calc(100svh - var(--nav)), 34rem);padding-top:var(--res);padding-bottom:var(--res-2);row-gap:1.75rem}
-.nyito__in{grid-template-rows:minmax(12rem,1fr) auto}
+/* ---------- első képernyő (A ház): a kép a maradék magasságot tölti ki, a hajtásnál nem vágódik ---------- */
+.lapfej__in{display:grid;height:max(calc(100svh - var(--nav)), 34rem);padding-top:var(--res);padding-bottom:var(--res-2);row-gap:1.75rem}
 .lapfej__in{grid-template-rows:auto minmax(12rem,1fr)}
-.nyito__kep,.lapfej__kep{min-height:0;max-height:72svh;align-self:stretch}
-.nyito__kep picture{display:block;height:100%}
-.nyito__kep img{object-position:50% 55%}
+.lapfej__kep{min-height:0;max-height:72svh;align-self:stretch}
 .lapfej__kep{width:min(100%, 68.625rem)}  /* 11 hasáb: az 1920 px-es forrás 1,75-ös kijelzőn is éles */
 .lapfej__kep img{object-position:50% 45%}
 .op-bal{object-position:5% 50%}
-.nyito__cim .cimke,.lapfej h1 .cimke{display:block;margin-bottom:.5rem}
-.nyito__jobb{display:grid;gap:1.25rem;align-content:start}
+.nyito__cim .cimke,.nyito__h1 .cimke,.lapfej h1 .cimke{display:block;margin-bottom:.5rem}
+
+/* ---------- Főoldali nyitókép: „lassú mélység” (2026-11-19, hero 2, a „keretből teljes képernyőre” helyett) ----------
+   A szakasz pontosan egy képernyő. A fotó az első pillanattól teljes; betöltés után 14 s alatt 1,08-ról 1-re lép
+   hátrébb (Ken Burns, CSS-animáció az img-n). Felette ritka hóesés (canvas, a talaj felé elhalványul).
+   Asztalon (≥ 761 px) a cím, a bevezető és a gombok a képen ülnek, alul a kép saját árnyéktónusú (#2E2924) fátyla
+   fölött, krém betűvel; ez az oldal egyetlen helye, ahol szöveg kerül a képre. Mobilon (≤ 760 px) a kép a felső sorban
+   áll, az alja a lap színébe olvad (.nyito__talaj ::before, maszkkal), a szöveg alatta sötét betűvel a lapon.
+   Görgetésre (GSAP, hn.js) a kép rétege (.nyito__reteg) lassabban halad (y +28 %, mobilon +20 %), mint a lap és a
+   szöveg: mélység. Egy elem egy mozgató: img = Ken Burns, .nyito__reteg = parallax. A fátyol a figure-höz tartozik,
+   a szöveggel együtt halad, így a kontraszt görgetés közben sem változik.
+   Reduced-motion és JS nélkül: nincs Ken Burns, hó, parallax; a szöveg azonnal látszik. */
+.nyito{position:relative;display:grid;grid-template-rows:minmax(0,1fr) auto;margin-top:calc(-1 * var(--nav));height:max(100svh, 34rem);overflow:clip;background:var(--felulet);
+  --fade:7.5rem}
+.nyito__kep{grid-row:1 / 3;grid-column:1;position:relative;margin:0;border-radius:0;background:var(--felulet);min-height:0}
+.nyito__reteg{position:absolute;inset:0}
+.nyito__kep picture{display:block;height:100%}
+.nyito__kep img{object-position:50% 55%;transform-origin:50% 62%}
+.nyito__ho{position:absolute;inset:0;z-index:2;width:100%;height:100%;pointer-events:none;
+  -webkit-mask-image:linear-gradient(to bottom,#000 0,#000 34%,transparent 60%);mask-image:linear-gradient(to bottom,#000 0,#000 34%,transparent 60%)}
+.nyito__talaj{grid-row:2;grid-column:1;position:relative;z-index:3;padding-bottom:4.5rem}
+.nyito__in{row-gap:1.5rem;align-items:end}
+.nyito__sor{display:block}
+.nyito__h1 .cimke{display:block;margin-bottom:.5rem}
+.nyito__jobb{display:grid;gap:1.25rem;align-content:end}
 @media (min-width:761px){
-  .nyito__cim{grid-column:1 / 7}
-  .nyito__jobb{grid-column:7 / 13;padding-top:1.6rem}
+  /* fátyol: a kép saját árnyéktónusa, alulról; a szöveg-sáv fölött kifut (mérve: hero-kontraszt2.py) */
+  .nyito__kep::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:linear-gradient(to top,rgba(46,41,36,.9) 0,rgba(46,41,36,.82) 22%,rgba(46,41,36,.52) 40%,rgba(46,41,36,.18) 55%,rgba(46,41,36,0) 66%)}
+  .nyito,.nyito__kep{background:var(--s-alap)}  /* ha a fotó nem jön meg, a krém szöveg sötét alapon marad olvasható */
+  .nyito__kep img{object-position:50% 35%}
+  .nyito__talaj{color:var(--alap)}
+  .nyito__h1{grid-column:1 / 7;max-width:20ch;color:var(--alap)}
+  .nyito__h1 .cimke{color:var(--alap)}  /* a képen az akcent-szín csak 3,8:1 lett (mérve), ezért krém */
+  .nyito__jobb{grid-column:7 / 13}
+  .nyito__jobb .lead{max-width:48ch;color:var(--s-halk)}
+  .nyito__talaj .lnk{color:var(--alap);text-decoration-color:var(--s-akcent)}
+  .nyito__talaj :focus-visible{outline-color:var(--alap)}
 }
-@media (min-width:1200px){.nyito__jobb{grid-column:8 / 13}}
+@media (max-width:760px){
+  .nyito{height:max(100svh, 40rem)}
+  .nyito__kep{grid-row:1}
+  .nyito__kep img{object-position:50% 78%}
+  .nyito__talaj{margin-top:calc(-1 * var(--fade));padding-top:var(--fade);padding-bottom:var(--sz)}
+  .nyito__talaj::before{content:"";position:absolute;left:0;right:0;top:0;bottom:-40svh;z-index:-1;background:var(--alap);pointer-events:none;
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0,rgba(0,0,0,.18) calc(var(--fade) * .4),rgba(0,0,0,.66) calc(var(--fade) * .75),rgba(0,0,0,.94) var(--fade),#000 calc(var(--fade) + 3rem));
+    mask-image:linear-gradient(to bottom,transparent 0,rgba(0,0,0,.18) calc(var(--fade) * .4),rgba(0,0,0,.66) calc(var(--fade) * .75),rgba(0,0,0,.94) var(--fade),#000 calc(var(--fade) + 3rem))}
+}
+/* belépő: a cím két sora maszkból emelkedik (CSS, a hn.js .is-be osztálya indítja), utána a bevezető és a gombok */
+.js .nyito__sor{overflow:clip;padding-top:.16em;padding-bottom:.16em;margin-top:-.16em;margin-bottom:-.16em}
+.js .nyito__sor > span{display:block;transform:translateY(130%)}
+.js .nyito__jobb{opacity:0;transform:translateY(10px)}
+.js .nyito.is-be .nyito__sor > span{transform:none;transition:transform 1.15s var(--ease-ki)}
+.js .nyito.is-be .nyito__sor + .nyito__sor > span{transition-delay:.14s}
+.js .nyito.is-be .nyito__jobb{opacity:1;transform:none;transition:opacity .8s var(--ease-ki) .42s,transform .8s var(--ease-ki) .42s}
+.js .nyito__kep img{transform:scale(1.08)}
+.js .nyito.is-be .nyito__kep img{animation:hn-kenburns 14s cubic-bezier(.2,.55,.3,1) both}
+@keyframes hn-kenburns{from{transform:scale(1.08)}to{transform:scale(1)}}
+.hn-csendes .nyito__sor > span,.hn-csendes .nyito__jobb{transform:none;opacity:1;transition:none}
+.hn-csendes .nyito__kep img{transform:none;animation:none}
+.hn-csendes .nyito__ho{display:none}
 
 /* ---------- Főoldal (2026-11-19, t_65ed31db): szakaszonként más kompozíció a 12 hasábos rácson ----------
    Fészek = az oldal egyetlen kép-szöveg párja · A házban = mozaik (6 + 3 + 3 hasáb, közös felső és alsó él)
@@ -125,7 +176,29 @@ figure img{width:100%;height:100%;object-fit:cover}
 }
 @media (max-width:560px){.tav-lista{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row}}
 @media (max-width:760px){.kepsor__gombok,.kepsor__gombok[hidden]{display:none}}
+/* a vezérlő: lapozó gombok (asztalon) + mozgás megállítása (minden szélességen, ha van mozgás) */
+.kert__vezerlo{display:flex;gap:.5rem;flex:none;align-items:center}
+.kepsor__szunet[hidden]{display:none}
+.kepsor__szunet .ik-indit,.kepsor__szunet[aria-pressed="true"] .ik-szunet{display:none}
+.kepsor__szunet[aria-pressed="true"] .ik-indit{display:block}
+/* önjáró mód (asztal, mozgás engedélyezve, kepsor.js): a CSS-snap helyett a JS igazít, kézzel húzható */
+.kepsor.is-auto{scroll-snap-type:none;cursor:grab}
+.kepsor.is-huz{cursor:grabbing;user-select:none;scroll-snap-type:none}
+.kepsor.is-auto img{-webkit-user-drag:none}
 @media (prefers-reduced-motion:reduce){.kepsor__gomb{transition:none}}
+
+/* szakaszcímek soronkénti felfedése (SplitText, hn.js): a maszk-sor az ékezet miatt függőlegesen bővítve */
+/* a maszk nem overflow (a SplitText inline overflow:clip-jét felülírjuk), hanem clip-path: a vágás felül 0,3 em-mel
+   tágabb az ékezetnek, és nincs margó, így a bontás nem változtat a cím magasságán (mérve: magassag-diag.py) */
+.sor-mask{overflow:visible!important;clip-path:inset(-.3em -.25em -.1em -.25em)}
+.h2t{display:block}
+
+/* gombok: finom emelkedés egér alatt (csak a főoldalon, csak valódi mutatóval) */
+@media (hover:hover) and (pointer:fine){
+  .p-fo .gomb:hover{transform:translateY(-2px)}
+  .p-fo .lnk{transition:text-decoration-color .2s var(--ease),text-underline-offset .25s var(--ease)}
+  .p-fo .lnk:hover{text-underline-offset:.42em}
+}
 
 /* ---------- szabad napok (21 napos sáv) ---------- */
 .szabad__fej{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.5rem 1.5rem;margin-bottom:1.5rem}
@@ -133,27 +206,28 @@ figure img{width:100%;height:100%;object-fit:cover}
 .minta-jel[data-allapot="hiba"]{color:var(--szoveg)}
 .minta-jel a{color:inherit}
 .sav{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:.375rem}
-.sav__nap{position:relative;display:grid;justify-items:center;gap:.125rem;padding:.6rem .25rem .5rem;border:1px solid var(--vonal);border-radius:4px;background:var(--alap)}
+/* a nap állapotát színkitöltés jelzi, keret nincs: szabad = halvány fa (#E4D6C8, a számhoz 10,1:1), foglalt = szürke (#D2CDC6) áthúzva (halk szám 5,0:1) */
+.sav__nap{position:relative;display:grid;justify-items:center;gap:.125rem;padding:.6rem .25rem .5rem;border-radius:4px;background:var(--akcent-halvany)}
 .sav__hn{font-size:.8125rem;color:var(--halk);line-height:1.2}
 .sav__sz{font-family:var(--serif);font-size:1.125rem;line-height:1.2}
 .sav__ho{position:absolute;top:-1.4rem;left:0;font-size:.8125rem;color:var(--halk);line-height:1}
-.sav__nap[data-allapot="foglalt"]{background:var(--felulet);border-color:transparent}
+.sav__nap[data-allapot="foglalt"]{background:var(--vonal)}
+.sav__nap[data-allapot="ismeretlen"]{background:transparent}
 .sav__nap[data-allapot="foglalt"] .sav__sz{text-decoration:line-through;text-decoration-thickness:1px;color:var(--halk)}
-.sav__nap[data-allapot="szabad"]{border-color:var(--akcent-hatar)}
 .sav{padding-top:1.4rem}
 @media (min-width:1100px){.sav{grid-template-columns:repeat(21,minmax(0,1fr));gap:.25rem}}
 @media (max-width:1099px){.sav__ho{display:none}.sav{padding-top:0}}
 .szabad__lab{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.5rem 1.5rem;margin-top:1.25rem}
 .jelmag{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;font-size:1rem;color:var(--halk)}
 .jelmag span{display:inline-flex;align-items:center;gap:.5rem}
-.jelmag i{width:.9rem;height:.9rem;border-radius:3px;border:1px solid var(--akcent-hatar);background:var(--alap)}
-.jelmag i.f{background:var(--felulet);border-color:var(--vonal)}
-.jelmag i.v{background:var(--akcent-sz);border-color:var(--akcent-sz)}
+.jelmag i{width:.9rem;height:.9rem;border-radius:3px;background:var(--akcent-halvany)}
+.jelmag i.f{background:var(--vonal)}
+.jelmag i.v{background:var(--akcent-sz)}
 
 /* ---------- záró (főoldal, sötét) ---------- */
 .zaro .racs{row-gap:1.5rem}
-.zaro__tel{font-family:var(--serif);font-size:1.75rem;line-height:1.2;text-decoration:none;color:var(--s-szoveg);border-bottom:1px solid var(--s-akcent);justify-self:start;padding-top:.3rem;padding-bottom:.35rem}
-.zaro__tel:hover{border-bottom-color:var(--s-szoveg)}
+.zaro__tel{font-family:var(--serif);font-size:1.75rem;line-height:1.2;text-decoration:none;color:var(--s-szoveg);justify-self:start;padding-top:.3rem;padding-bottom:.35rem}
+.zaro__tel:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
 .zaro__adat{display:grid;gap:1rem}
 .zaro__adat dt,.elerhet dt,.adatsor dt,.szabalyok dt{font-size:var(--t-cimke);font-weight:500;color:var(--halk)}
 .zaro__adat dt{color:var(--s-halk)}

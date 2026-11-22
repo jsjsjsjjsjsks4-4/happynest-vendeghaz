@@ -4,7 +4,7 @@
 <meta charset="utf-8">
   <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>(function(d){d.className+=' js';try{var p=new URLSearchParams(location.search).get('paletta');if(p&&/^[abc]$/.test(p))sessionStorage.setItem('hn-paletta',p);var s=sessionStorage.getItem('hn-paletta');if(s)d.setAttribute('data-paletta',s)}catch(e){}})(document.documentElement);</script>
+<script>(function(d){d.className+=' js';try{var p=new URLSearchParams(location.search).get('paletta');if(p&&/^[abc]$/.test(p))sessionStorage.setItem('hn-paletta',p);var s=sessionStorage.getItem('hn-paletta');if(s)d.setAttribute('data-paletta',s);var m=new URLSearchParams(location.search).get('motion');if(m==='1'||m==='0')sessionStorage.setItem('hn-motion',m);var k=sessionStorage.getItem('hn-motion');if(k==='1'?false:(k==='0'?true:matchMedia('(prefers-reduced-motion: reduce)').matches))d.className+=' hn-csendes'}catch(e){}})(document.documentElement);</script>
 <title>Szabad napok és kapcsolat · HappyNest Vendégház, Gyód</title>
 <meta name="description" content="Nézd meg, mely éjszakák szabadok a HappyNest Vendégházban, és küldj érdeklődést. Telefon: +36 20 372 6984.">
 <meta property="og:type" content="website">
@@ -15,11 +15,11 @@
 <meta name="theme-color" content="#F6F1E9">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="js/vendor/lenis.css?v=7">
-<link rel="stylesheet" href="css/paletta.css?v=7">
-<link rel="stylesheet" href="css/alap.css?v=7">
-<link rel="stylesheet" href="css/oldalak.css?v=7">
-<link rel="stylesheet" href="css/aloldal.css?v=7">
+<link rel="stylesheet" href="js/vendor/lenis.css?v=9">
+<link rel="stylesheet" href="css/paletta.css?v=9">
+<link rel="stylesheet" href="css/alap.css?v=9">
+<link rel="stylesheet" href="css/oldalak.css?v=9">
+<link rel="stylesheet" href="css/aloldal.css?v=9">
 </head>
 <body class="p-kap">
 <a class="ugro" href="#tartalom">Ugrás a tartalomra</a>
@@ -99,6 +99,7 @@
         <div class="ur__mezo ur__mezo--szeles"><label for="m-uzenet">Üzenet</label><textarea id="m-uzenet" name="uzenet" rows="4"></textarea></div>
         <div class="ur__mezo ur__mezo--szeles"><label class="ur__jelolo" for="m-hozza"><input id="m-hozza" name="hozzajarulas" type="checkbox" value="igen" required> <span>Hozzájárulok, hogy az adataimat az érdeklődés megválaszolására kezeljék *</span></label><p class="ur__hiba" id="h-hozzajarulas" data-mezo-hiba="hozzajarulas" hidden></p></div>
         <div class="ur__kuld ur__mezo--szeles"><button class="gomb" type="submit">Érdeklődés elküldése</button><p class="ur__allapot" data-urlap-allapot role="status"></p></div>
+        <p class="ur__adatv ur__mezo--szeles">Az adataid kezeléséről az <a class="be" href="adatvedelem.html">adatkezelési tájékoztatóban</a> olvashatsz.</p>
       </form>
       <dl class="elerhet">
         <div><dt>Telefon</dt><dd><a class="lnk" href="tel:+36203726984">+36 20 372 6984</a></dd></div>
@@ -123,13 +124,13 @@
       <p>7668 Gyód, hrsz. 612/2</p>
     </div>
   </div>
-  <div class="wrap lab__also"><span>© 2026 HappyNest Vendégház</span><span>NTAK-regisztrációs szám: MA25107793</span><span>Fotók: HappyNest Vendégház</span></div>
+  <div class="wrap lab__also"><span>© 2026 HappyNest Vendégház</span><span>NTAK-regisztrációs szám: MA25107793</span><span>Fotók: HappyNest Vendégház</span><nav class="lab__jogi" aria-label="Jogi információk"><a href="adatvedelem.html">Adatkezelési tájékoztató</a><a href="impresszum.html">Impresszum</a><a href="hazirend.html">Házirend</a></nav></div>
 </footer>
-<script src="data/minta.js?v=7" defer></script>
-<script src="js/naptar.js?v=7" defer></script>
-<script src="js/naptar-teljes.js?v=7" defer></script>
-<script src="js/urlap.js?v=7" defer></script>
-<script src="js/hn.js?v=7" defer></script>
+<script src="data/minta.js?v=9" defer></script>
+<script src="js/naptar.js?v=9" defer></script>
+<script src="js/naptar-teljes.js?v=9" defer></script>
+<script src="js/urlap.js?v=9" defer></script>
+<script src="js/hn.js?v=9" defer></script>
 </body>
 </html>
 

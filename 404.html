@@ -4,7 +4,7 @@
 <meta charset="utf-8">
   <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>(function(d){d.className+=' js';try{var p=new URLSearchParams(location.search).get('paletta');if(p&&/^[abc]$/.test(p))sessionStorage.setItem('hn-paletta',p);var s=sessionStorage.getItem('hn-paletta');if(s)d.setAttribute('data-paletta',s)}catch(e){}})(document.documentElement);</script>
+<script>(function(d){d.className+=' js';try{var p=new URLSearchParams(location.search).get('paletta');if(p&&/^[abc]$/.test(p))sessionStorage.setItem('hn-paletta',p);var s=sessionStorage.getItem('hn-paletta');if(s)d.setAttribute('data-paletta',s);var m=new URLSearchParams(location.search).get('motion');if(m==='1'||m==='0')sessionStorage.setItem('hn-motion',m);var k=sessionStorage.getItem('hn-motion');if(k==='1'?false:(k==='0'?true:matchMedia('(prefers-reduced-motion: reduce)').matches))d.className+=' hn-csendes'}catch(e){}})(document.documentElement);</script>
 <title>Az oldal nem található · HappyNest Vendégház</title>
 <meta name="description" content="A keresett oldal nincs meg. A főoldalról vagy a szabad napoktól biztosan továbbjutsz.">
 <meta property="og:type" content="website">
@@ -15,11 +15,11 @@
 <meta name="theme-color" content="#F6F1E9">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="js/vendor/lenis.css?v=7">
-<link rel="stylesheet" href="css/paletta.css?v=7">
-<link rel="stylesheet" href="css/alap.css?v=7">
-<link rel="stylesheet" href="css/oldalak.css?v=7">
-<link rel="stylesheet" href="css/aloldal.css?v=7">
+<link rel="stylesheet" href="js/vendor/lenis.css?v=9">
+<link rel="stylesheet" href="css/paletta.css?v=9">
+<link rel="stylesheet" href="css/alap.css?v=9">
+<link rel="stylesheet" href="css/oldalak.css?v=9">
+<link rel="stylesheet" href="css/aloldal.css?v=9">
 </head>
 <body class="p-404">
 <a class="ugro" href="#tartalom">Ugrás a tartalomra</a>
@@ -63,9 +63,9 @@
       <p>7668 Gyód, hrsz. 612/2</p>
     </div>
   </div>
-  <div class="wrap lab__also"><span>© 2026 HappyNest Vendégház</span><span>NTAK-regisztrációs szám: MA25107793</span><span>Fotók: HappyNest Vendégház</span></div>
+  <div class="wrap lab__also"><span>© 2026 HappyNest Vendégház</span><span>NTAK-regisztrációs szám: MA25107793</span><span>Fotók: HappyNest Vendégház</span><nav class="lab__jogi" aria-label="Jogi információk"><a href="adatvedelem.html">Adatkezelési tájékoztató</a><a href="impresszum.html">Impresszum</a><a href="hazirend.html">Házirend</a></nav></div>
 </footer>
-<script src="js/hn.js?v=7" defer></script>
+<script src="js/hn.js?v=9" defer></script>
 </body>
 </html>
 

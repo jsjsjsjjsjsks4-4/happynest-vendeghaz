@@ -4,7 +4,7 @@
 <meta charset="utf-8">
   <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>(function(d){d.className+=' js';try{var p=new URLSearchParams(location.search).get('paletta');if(p&&/^[abc]$/.test(p))sessionStorage.setItem('hn-paletta',p);var s=sessionStorage.getItem('hn-paletta');if(s)d.setAttribute('data-paletta',s)}catch(e){}})(document.documentElement);</script>
+<script>(function(d){d.className+=' js';try{var p=new URLSearchParams(location.search).get('paletta');if(p&&/^[abc]$/.test(p))sessionStorage.setItem('hn-paletta',p);var s=sessionStorage.getItem('hn-paletta');if(s)d.setAttribute('data-paletta',s);var m=new URLSearchParams(location.search).get('motion');if(m==='1'||m==='0')sessionStorage.setItem('hn-motion',m);var k=sessionStorage.getItem('hn-motion');if(k==='1'?false:(k==='0'?true:matchMedia('(prefers-reduced-motion: reduce)').matches))d.className+=' hn-csendes'}catch(e){}})(document.documentElement);</script>
 <title>HappyNest Vendégház Gyód · jakuzzi, szauna, Mecsek-kilátás</title>
 <meta name="description" content="Teljes ház 8 főnek Gyódon, Pécstől 5 km-re: privát jakuzzi egész évben, finn szauna, kandalló, 1400 m² kert. Nézd meg a szabad napokat.">
 <meta property="og:type" content="website">
@@ -15,11 +15,12 @@
 <meta name="theme-color" content="#F6F1E9">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="js/vendor/lenis.css?v=7">
-<link rel="stylesheet" href="css/paletta.css?v=7">
-<link rel="stylesheet" href="css/alap.css?v=7">
-<link rel="stylesheet" href="css/oldalak.css?v=7">
-<link rel="stylesheet" href="css/aloldal.css?v=7">
+<link rel="stylesheet" href="js/vendor/lenis.css?v=14">
+<link rel="stylesheet" href="css/paletta.css?v=14">
+<link rel="stylesheet" href="css/alap.css?v=14">
+<link rel="stylesheet" href="css/oldalak.css?v=14">
+<link rel="stylesheet" href="css/aloldal.css?v=14">
+<link rel="stylesheet" href="css/fooldal.css?v=14">
 </head>
 <body class="p-fo">
 <a class="ugro" href="#tartalom">Ugrás a tartalomra</a>
@@ -46,19 +47,28 @@
 </script>
 <main id="tartalom">
 
-  <section class="nyito" aria-labelledby="nyito-cim" data-elso>
-    <div class="wrap nyito__in">
-      <figure class="nyito__kep">
+  <!-- Nyitókép (2026-11-22, hero 4, Levente C választása; hero 5 késő este: a mozgás érezhető és folyamatos): egy kép,
+       a havas udvar a fenyő alatt, pontosan egy képernyő. Mozgás: a kép végtelen, oda-vissza Ken Burnsszel él (CSS, az
+       img-n: nagyítás 1,0 ↔ 1,12, 24 s; oldalirányú úszás ±2,4 %, 19 s), a felirat, a cím, a bevezető és a gombok
+       egymás után lágyan előjönnek (CSS, legfeljebb 1,25 s), görgetéskor a kép rétege 27 %-kal lassabban halad a lapnál
+       (GSAP, a .nyk__reteg-en), a szöveg lassan felúszik és halványul, a kép előtt ritka, apró hó esik (canvas). Sötétítés
+       csak a szöveg-sáv mögött. Pin és maszk nincs. JS, GSAP vagy mozgás nélkül álló kép és teljes szöveg, hó nélkül. -->
+  <section class="nyk" aria-labelledby="nyito-cim" data-elso data-hero>
+    <figure class="nyk__kep" data-hero-kep>
+      <div class="nyk__reteg" data-nyk-reteg>
         <picture>
-          <source media="(max-width: 760px)" srcset="media/nyito-allo-900.webp 900w, media/nyito-allo-1200.webp 1200w" sizes="calc(100vw - 2.5rem)" width="1200" height="1500">
-          <img src="media/nyito-szeles-1800.webp" srcset="media/nyito-szeles-1200.webp 1200w, media/nyito-szeles-1800.webp 1800w, media/nyito-szeles-2400.webp 2400w, media/nyito-szeles-3000.webp 3000w" sizes="(max-width: 1264px) calc(100vw - 4rem), 1200px" width="3000" height="1500" alt="Havas udvar a fenyő alatt: a fából épült szaunaház, mellette a lefedett jakuzzi" decoding="async" loading="eager" fetchpriority="high">
+          <source media="(max-width: 760px)" srcset="media/nyito-mobil-1000.webp 1000w, media/nyito-mobil-1400.webp 1400w" sizes="100vw" width="1400" height="2800">
+          <img src="media/nyito-tag-1800.webp" srcset="media/nyito-tag-1200.webp 1200w, media/nyito-tag-1800.webp 1800w, media/nyito-tag-2400.webp 2400w, media/nyito-tag-3000.webp 3000w" sizes="106vw" width="3000" height="1875" alt="Havas udvar a fenyő alatt: a fából épült szaunaház, mellette a lefedett jakuzzi" decoding="async" loading="eager" fetchpriority="high" data-hero-img>
         </picture>
-      </figure>
-      <div class="nyito__szoveg racs">
-        <h1 class="nyito__cim" id="nyito-cim"><span class="cimke">HappyNest Vendégház, Gyód </span>Fészek a fenyők alatt</h1>
-        <div class="nyito__jobb">
-          <p class="lead">Teljes ház legfeljebb 8 főnek Pécstől 5 km-re, a Mecsekre néző domboldalon. Privát jakuzzi egész évben, finn szauna, kandalló.</p>
-          <div class="sorgomb"><a class="gomb" href="kapcsolat.html#foglaltsag">Szabad napok megnézése</a><a class="lnk" href="a-haz.html">A ház bemutatása</a></div>
+      </div>
+      <canvas class="nyk__ho" data-nyk-ho aria-hidden="true"></canvas>
+    </figure>
+    <div class="nyk__talaj" data-hero-b>
+      <div class="wrap racs nyk__in" data-nyk-szoveg>
+        <h1 class="nyk__h1" id="nyito-cim"><span class="cimke nyk__be">HappyNest Vendégház, Gyód</span> <span class="nyk__cim nyk__be">Fészek a fenyők alatt</span></h1>
+        <div class="nyk__jobb">
+          <p class="lead nyk__be">Teljes ház legfeljebb 8 főnek Pécstől 5 km-re, a Mecsekre néző domboldalon. Privát jakuzzi egész évben, finn szauna, kandalló.</p>
+          <div class="sorgomb nyk__be"><a class="gomb" href="kapcsolat.html#foglaltsag" data-hero-gomb>Foglalj időpontot</a><a class="lnk" href="a-haz.html"><span class="lnk__t">A ház bemutatása</span></a></div>
         </div>
       </div>
     </div>
@@ -66,33 +76,33 @@
 
   <section class="feszek sz" aria-labelledby="feszek-cim">
     <div class="wrap racs">
-      <figure class="feszek__kep" data-r><img src="media/feszek-hinta-1200.webp" srcset="media/feszek-hinta-640.webp 640w, media/feszek-hinta-1200.webp 1200w, media/feszek-hinta-1350.webp 1350w" sizes="(max-width: 760px) calc(100vw - 2.5rem), 360px" width="1350" height="1800" alt="Havas kert, a nagy fa ágán piros fészekhinta" decoding="async" loading="lazy"></figure>
-      <div class="feszek__szoveg" data-r>
-        <h2 id="feszek-cim">Ahol a szíved madárcsicsergésre dobban</h2>
-        <p class="lead">Hatalmas fenyők és cédrusok, csend és madárhang a gyódi domboldalon. A házat és a kertet egészben kapod meg, más vendég nincs.</p>
-        <dl class="tenysor">
-          <div><dt>65 m²</dt><dd>teljes ház</dd></div>
-          <div><dt>8 fő</dt><dd>legfeljebb</dd></div>
-          <div><dt>2</dt><dd>hálószoba</dd></div>
-          <div><dt>1400 m²</dt><dd>saját kert</dd></div>
+      <figure class="feszek__kep" data-feszek-kep><img src="media/feszek-hinta-1200.webp" srcset="media/feszek-hinta-640.webp 640w, media/feszek-hinta-1200.webp 1200w, media/feszek-hinta-1350.webp 1350w" sizes="(max-width: 760px) calc(100vw - 2.5rem), 360px" width="1350" height="1800" alt="Havas kert, a nagy fa ágán piros fészekhinta" decoding="async" loading="lazy"></figure>
+      <div class="feszek__szoveg">
+        <h2 id="feszek-cim" data-cim>Ahol a szíved madárcsicsergésre dobban</h2>
+        <p class="lead" data-r>Hatalmas fenyők és cédrusok, csend és madárhang a gyódi domboldalon. A házat és a kertet egészben kapod meg, más vendég nincs.</p>
+        <dl class="tenysor" data-r="lepcso">
+          <div><dt><span data-szam>65</span> m²</dt><dd>teljes ház</dd></div>
+          <div><dt><span data-szam>8</span> fő</dt><dd>legfeljebb</dd></div>
+          <div><dt><span data-szam>2</span></dt><dd>hálószoba</dd></div>
+          <div><dt><span data-szam>1400</span> m²</dt><dd>saját kert</dd></div>
         </dl>
       </div>
     </div>
   </section>
 
-  <section class="haz sz" aria-labelledby="haz-cim">
+  <section class="haz sz" data-ton="1" aria-labelledby="haz-cim">
     <div class="wrap">
       <div class="haz__fej racs">
-        <h2 id="haz-cim"><span class="kicker">A házban </span>Nappali, két hálószoba és kandalló</h2>
+        <h2 id="haz-cim"><span class="kicker">A házban </span><span class="h2t" data-cim>Nappali, két hálószoba és kandalló</span></h2>
         <div class="haz__lead">
           <p class="lead">A két hálószobában és a nappali kihúzható kanapéján legfeljebb 8 fő alszik. Egy fürdőszoba, külön konyha, klíma, Wi-Fi és Netflix. Kutyát, macskát is hozhatsz, a ház baba- és gyerekbarát.</p>
-          <a class="lnk" href="a-haz.html">Minden szoba A ház oldalon</a>
+          <a class="lnk" href="a-haz.html"><span class="lnk__t">Minden szoba A ház oldalon</span></a>
         </div>
       </div>
-      <div class="mozaik" data-r>
-        <figure class="m m--nagy"><div class="kp"><img src="media/nappali-1200.webp" srcset="media/nappali-640.webp 640w, media/nappali-1200.webp 1200w, media/nappali-1920.webp 1920w" sizes="(max-width: 760px) calc(100vw - 2.5rem), 588px" width="1920" height="1280" alt="Nappali sötétzöld fallal, fehér kanapéval és kerek tükörrel" decoding="async" loading="lazy"></div><figcaption>Nappali kihúzható kanapéval</figcaption></figure>
-        <figure class="m m--kis"><div class="kp"><img src="media/kandallo-1200.webp" srcset="media/kandallo-640.webp 640w, media/kandallo-1200.webp 1200w, media/kandallo-1440.webp 1440w" sizes="(max-width: 760px) calc(50vw - 1.625rem), 300px" width="1440" height="1920" alt="Fekete kandalló üvegajtóval, előtte tűzifa" decoding="async" loading="lazy"></div><figcaption>Kandalló</figcaption></figure>
-        <figure class="m m--kis"><div class="kp"><img src="media/haloszoba-reggel-1200.webp" srcset="media/haloszoba-reggel-640.webp 640w, media/haloszoba-reggel-1200.webp 1200w, media/haloszoba-reggel-1440.webp 1440w" sizes="(max-width: 760px) calc(50vw - 1.625rem), 300px" width="1440" height="1920" alt="Világos hálószoba zöld pöttyös ágyneművel" decoding="async" loading="lazy"></div><figcaption>Az egyik hálószoba</figcaption></figure>
+      <div class="mozaik">
+        <figure class="m m--nagy" data-r="maszk"><div class="kp"><img src="media/nappali-1200.webp" srcset="media/nappali-640.webp 640w, media/nappali-1200.webp 1200w, media/nappali-1920.webp 1920w" sizes="(max-width: 760px) calc(100vw - 2.5rem), 588px" width="1920" height="1280" alt="Nappali sötétzöld fallal, fehér kanapéval és kerek tükörrel" decoding="async" loading="lazy"></div><figcaption>Nappali kihúzható kanapéval</figcaption></figure>
+        <figure class="m m--kis" data-r="maszk-bal"><div class="kp"><img src="media/kandallo-1200.webp" srcset="media/kandallo-640.webp 640w, media/kandallo-1200.webp 1200w, media/kandallo-1440.webp 1440w" sizes="(max-width: 760px) calc(50vw - 1.625rem), 300px" width="1440" height="1920" alt="Fekete kandalló üvegajtóval, előtte tűzifa" decoding="async" loading="lazy"></div><figcaption>Kandalló</figcaption></figure>
+        <figure class="m m--kis" data-r="maszk-bal"><div class="kp"><img src="media/haloszoba-reggel-1200.webp" srcset="media/haloszoba-reggel-640.webp 640w, media/haloszoba-reggel-1200.webp 1200w, media/haloszoba-reggel-1440.webp 1440w" sizes="(max-width: 760px) calc(50vw - 1.625rem), 300px" width="1440" height="1920" alt="Világos hálószoba zöld pöttyös ágyneművel" decoding="async" loading="lazy"></div><figcaption>Az egyik hálószoba</figcaption></figure>
       </div>
     </div>
   </section>
@@ -100,15 +110,15 @@
   <section class="wellness-f sz" aria-labelledby="wellness-cim">
     <div class="wrap racs">
       <div class="wellness-f__fej">
-        <h2 id="wellness-cim"><span class="kicker">Wellness </span>Finn szauna és privát jakuzzi</h2>
+        <h2 id="wellness-cim"><span class="kicker">Wellness </span><span class="h2t" data-cim>Finn szauna és privát jakuzzi</span></h2>
         <p class="lead">Mindkettő a házhoz tartozik, más vendéggel nem osztozol rajta.</p>
       </div>
-      <article class="wp wp--1" aria-labelledby="wp1" data-r>
+      <article class="wp wp--1" aria-labelledby="wp1">
         <div class="kp"><img src="media/szauna-kalyha-1200.webp" srcset="media/szauna-kalyha-640.webp 640w, media/szauna-kalyha-1200.webp 1200w, media/szauna-kalyha-1440.webp 1440w" sizes="(max-width: 760px) calc(100vw - 2.5rem), 384px" width="1440" height="1920" alt="Finn szauna belülről: kőkályha, mögötte fapadok" decoding="async" loading="lazy"></div>
         <h3 id="wp1">Finn szauna</h3>
         <p>Fából épült szaunaház a kertben, fapadokkal és kályhával. Csak a ti társaságotok használja.</p>
       </article>
-      <article class="wp wp--2" aria-labelledby="wp2" data-r>
+      <article class="wp wp--2" aria-labelledby="wp2">
         <div class="kp"><img class="kp-jakuzzi" src="media/jakuzzi-este-1200.webp" srcset="media/jakuzzi-este-640.webp 640w, media/jakuzzi-este-1200.webp 1200w, media/jakuzzi-este-1440.webp 1440w" sizes="(max-width: 760px) calc(100vw - 2.5rem), 384px" width="1440" height="1920" alt="Gőzölgő jakuzzi a fa tető alatt, fölötte fényfüzér" decoding="async" loading="lazy"></div>
         <h3 id="wp2">Privát jakuzzi</h3>
         <p>Legfeljebb 6 fő fér bele. Egész évben bármikor használható, télen is meleg a víz.</p>
@@ -116,17 +126,24 @@
     </div>
   </section>
 
-  <section class="velemeny sz" aria-labelledby="velemeny-cim">
+  <section class="velemeny sz" data-ton="1" aria-labelledby="velemeny-cim">
     <div class="wrap racs">
       <h2 class="sr-only" id="velemeny-cim">Vendégértékelés</h2>
       <div class="velemeny__ertek" data-r>
-        <p class="velemeny__szam">9,8</p>
+        <p class="velemeny__szam"><span data-szam>9,8</span></p>
         <p class="velemeny__forras">19 értékelés alapján<br>
         <a class="be" href="https://szallas.hu/happynest-vendeghaz-gyod" rel="noopener">szallas.hu</a></p>
       </div>
-      <figure class="velemeny__idezet" data-r>
-        <blockquote><p>„Minden a praktikusság és a minőség jegyében lett kialakítva”</p></blockquote>
-        <figcaption>Vendégvélemény</figcaption>
+      <figure class="velemeny__idezet" data-r data-idezetek>
+        <div class="idezetek">
+          <blockquote class="idezet is-akt"><p>„Minden a praktikusság és a minőség jegyében lett kialakítva”</p></blockquote>
+          <blockquote class="idezet"><p>„A kert egyébként nagyon tágas és a hintáról nagyon szép a kilátás!”</p></blockquote>
+          <blockquote class="idezet"><p>„Szép csendes nyugodt környezet”</p></blockquote>
+        </div>
+        <div class="velemeny__lab">
+          <figcaption>Vendégvélemények, szallas.hu</figcaption>
+          <button type="button" class="kepsor__gomb kepsor__szunet idezet__szunet" data-idezet-szunet aria-pressed="false" aria-label="A vendégvélemények váltásának megállítása" hidden><svg class="ik-szunet" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M9 6v12M15 6v12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><svg class="ik-indit" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></button>
+        </div>
       </figure>
     </div>
   </section>
@@ -134,18 +151,23 @@
   <section class="kert sz" aria-labelledby="kert-cim">
     <div class="wrap">
       <div class="kert__fej">
-        <h2 id="kert-cim"><span class="kicker">Kert és környék </span>Fedett terasz, fenyves kert</h2>
+        <h2 id="kert-cim"><span class="kicker">Kert és környék </span><span class="h2t" data-cim>Fedett terasz, fenyves kert</span></h2>
+        <div class="kert__vezerlo">
+        <button type="button" class="kepsor__gomb kepsor__szunet" data-mozgas-szunet aria-pressed="false" aria-label="A képsor mozgásának megállítása" hidden><svg class="ik-szunet" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M9 6v12M15 6v12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><svg class="ik-indit" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></button>
         <div class="kepsor__gombok" data-kepsor-gombok hidden>
           <button type="button" class="kepsor__gomb" data-kepsor-elozo aria-controls="kepsor" aria-label="Előző kép"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           <button type="button" class="kepsor__gomb" data-kepsor-kovetkezo aria-controls="kepsor" aria-label="Következő kép"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
+        </div>
       </div>
-      <div class="kepsor" id="kepsor" role="region" aria-label="A kert képei, oldalra görgethető" tabindex="0" data-kepsor><ul class="kepsor__lista">
+      <div class="kepsor" id="kepsor" role="region" aria-label="A kert képei, oldalra görgethető" tabindex="0" data-kepsor data-r="jobb"><ul class="kepsor__lista">
         <li><figure><div class="kp"><img src="media/terasz-1200.webp" srcset="media/terasz-640.webp 640w, media/terasz-1200.webp 1200w, media/terasz-1920.webp 1920w" sizes="(max-width: 760px) 72vw, 486px" width="1920" height="1440" alt="Fedett terasz kerti kanapéval, mögötte a zöld kert" decoding="async" loading="lazy"></div><figcaption>Fedett terasz kerti kanapéval</figcaption></figure></li>
         <li><figure><div class="kp"><img src="media/tel-fenyok-1200.webp" srcset="media/tel-fenyok-640.webp 640w, media/tel-fenyok-1200.webp 1200w, media/tel-fenyok-1920.webp 1920w" sizes="(max-width: 760px) 72vw, 486px" width="1920" height="1440" alt="Havas fenyők a kertben" decoding="async" loading="lazy"></div><figcaption>Fenyők a kertben, télen</figcaption></figure></li>
         <li><figure><div class="kp"><img class="kp-fa" src="media/kert-fa-1200.webp" srcset="media/kert-fa-640.webp 640w, media/kert-fa-1200.webp 1200w, media/kert-fa-1534.webp 1534w" sizes="(max-width: 760px) 72vw, 486px" width="1534" height="1711" alt="Nagy szomorúfa a kertben, mögötte kék ég" decoding="async" loading="lazy"></div><figcaption>Szomorúfa a kert közepén</figcaption></figure></li>
         <li><figure><div class="kp"><img src="media/tel-havazas-1200.webp" srcset="media/tel-havazas-640.webp 640w, media/tel-havazas-1200.webp 1200w, media/tel-havazas-1920.webp 1920w" sizes="(max-width: 760px) 72vw, 486px" width="1920" height="1440" alt="Fából épült szaunaház a havas kertben" decoding="async" loading="lazy"></div><figcaption>A szaunaház havazásban</figcaption></figure></li>
       </ul></div>
+    </div>
+    <div class="wrap">
       <div class="kert__szoveg racs">
         <div class="kert__bal" data-r>
           <h3>A kertben</h3>
@@ -153,40 +175,40 @@
         </div>
         <div class="kert__jobb" data-r>
           <h3>A környéken</h3>
-          <dl class="tav-lista">
-            <div><dt>Pécs</dt><dd>kb. 5 km</dd></div>
-            <div><dt>Horgászás</dt><dd>500 m</dd></div>
-            <div><dt>Túrázás</dt><dd>1 km</dd></div>
-            <div><dt>Uszoda és bowling</dt><dd>10 km</dd></div>
-            <div><dt>Bobozás</dt><dd>15 km</dd></div>
+          <dl class="tav-lista" data-r="lepcso">
+            <div><dt>Pécs</dt><dd>kb. <span data-szam>5</span> km</dd></div>
+            <div><dt>Horgászás</dt><dd><span data-szam>500</span> m</dd></div>
+            <div><dt>Túrázás</dt><dd><span data-szam>1</span> km</dd></div>
+            <div><dt>Uszoda és bowling</dt><dd><span data-szam>10</span> km</dd></div>
+            <div><dt>Bobozás</dt><dd><span data-szam>15</span> km</dd></div>
           </dl>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="szabad sz" aria-labelledby="szabad-cim" data-hn-sav>
+  <section class="szabad sz" data-ton="1" aria-labelledby="szabad-cim" data-hn-sav>
     <div class="wrap">
       <div class="szabad__fej">
-        <h2 id="szabad-cim">Szabad napok a következő három hétben</h2>
+        <h2 id="szabad-cim" data-cim>Szabad napok a következő három hétben</h2>
         <p class="minta-jel" data-minta-jel data-allapot="minta" hidden>Mintaadat, a valódi foglaltság hamarosan</p>
       </div>
-      <ol class="sav" data-hn-mini="21" aria-label="A következő 21 nap foglaltsága"></ol>
+      <ol class="sav" data-r="lepcso" data-hn-mini="21" aria-label="A következő 21 nap foglaltsága"></ol>
       <div class="szabad__lab">
         <p class="jelmag"><span><i aria-hidden="true"></i>Szabad éjszaka</span><span><i class="f" aria-hidden="true"></i>Foglalt éjszaka</span></p>
-        <a class="lnk" href="kapcsolat.html#foglaltsag">Teljes naptár és érdeklődés</a>
+        <a class="lnk" href="kapcsolat.html#foglaltsag"><span class="lnk__t">Teljes naptár és érdeklődés</span></a>
       </div>
     </div>
   </section>
 
   <section class="zaro sotet sz" aria-labelledby="zaro-cim">
     <div class="wrap racs">
-      <h2 class="zaro__cim" id="zaro-cim">Kérdésed van, vagy egyeztetnéd az érkezést?</h2>
-      <a class="zaro__tel" href="tel:+36203726984">+36 20 372 6984</a>
-      <dl class="zaro__adat">
+      <h2 class="zaro__cim" id="zaro-cim" data-cim>Kérdésed van, vagy egyeztetnéd az érkezést?</h2>
+      <a class="zaro__tel" data-tel-gurul href="tel:+36203726984">+36 20 372 6984</a>
+      <dl class="zaro__adat" data-r>
         <div><dt>Érkezés</dt><dd>14:00 és éjfél között, önállóan, kulcsdobozzal</dd></div>
         <div><dt>Távozás</dt><dd>10:00-ig</dd></div>
-        <div><dt>Írásban</dt><dd><a class="lnk" href="kapcsolat.html#erdeklodes">Érdeklődés az űrlapon</a></dd></div>
+        <div><dt>Írásban</dt><dd><a class="lnk" href="kapcsolat.html#erdeklodes"><span class="lnk__t">Érdeklődés az űrlapon</span></a></dd></div>
       </dl>
     </div>
   </section>
@@ -195,7 +217,7 @@
 <footer class="lab">
   <div class="wrap lab__in">
     <div class="lab__marka">
-      <p class="logo"><span class="logo__nev" translate="no">HappyNest</span><span class="logo__hely">Vendégház, Gyód</span></p>
+      <p class="logo"><span class="logo__nev" translate="no" data-lab-nev>HappyNest</span><span class="logo__hely">Vendégház, Gyód</span></p>
       <p>Teljes ház legfeljebb 8 vendégnek, Pécstől 5 km-re, a Mecsekre néző gyódi domboldalon.</p>
     </div>
     <nav class="lab__nav" aria-label="Lábléc navigáció"><h2>Oldalak</h2><ul><li><a href="index.html">Főoldal</a></li><li><a href="a-haz.html">A ház</a></li><li><a href="galeria.html">Galéria</a></li><li><a href="kapcsolat.html">Szabad napok és kapcsolat</a></li></ul></nav>
@@ -205,12 +227,13 @@
       <p>7668 Gyód, hrsz. 612/2</p>
     </div>
   </div>
-  <div class="wrap lab__also"><span>© 2026 HappyNest Vendégház</span><span>NTAK-regisztrációs szám: MA25107793</span><span>Fotók: HappyNest Vendégház</span></div>
+  <div class="wrap lab__also"><span>© 2026 HappyNest Vendégház</span><span>NTAK-regisztrációs szám: MA25107793</span><span>Fotók: HappyNest Vendégház</span><nav class="lab__jogi" aria-label="Jogi információk"><a href="adatvedelem.html">Adatkezelési tájékoztató</a><a href="impresszum.html">Impresszum</a><a href="hazirend.html">Házirend</a></nav></div>
 </footer>
-<script src="data/minta.js?v=7" defer></script>
-<script src="js/naptar.js?v=7" defer></script>
-<script src="js/kepsor.js?v=7" defer></script>
-<script src="js/hn.js?v=7" defer></script>
+<script src="data/minta.js?v=14" defer></script>
+<script src="js/naptar.js?v=14" defer></script>
+<script src="js/kepsor.js?v=14" defer></script>
+<script src="js/hn.js?v=14" defer></script>
+<script src="js/fooldal.js?v=14" defer></script>
 </body>
 </html>
 

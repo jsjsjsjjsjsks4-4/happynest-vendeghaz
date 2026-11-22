@@ -54,17 +54,34 @@
     });
   });
 
-  /* nagyító: csak a látható képek között lapoz */
+  /* nagyító: csak a látható képek között lapoz.
+     Minden megnyitás és lapozás ÚJ <img> elemet tesz a régi helyére, így az előző kép egy képkockára sem látszik
+     (a régi elemnél a src csere után a böngésző a betöltésig a régi képet mutatja).
+     Amíg a nagy kép tölt, a rácsban már betöltött bélyegkép áll a helyén, felnagyítva, ugyanabban a keretben.
+     A nagy kép a load + decode után kerül be; a token miatt egy késve érkező régi kép nem írja felül az újat. */
   var dlg = d.querySelector('[data-nagyito]');
   if (dlg && typeof dlg.showModal === 'function') {
     var img = dlg.querySelector('[data-nagyito-img]'), felirat = dlg.querySelector('[data-nagyito-felirat]');
-    var szam = dlg.querySelector('[data-nagyito-szam]'), aktiv = 0, sor = [], vissza = null;
+    var szam = dlg.querySelector('[data-nagyito-szam]'), aktiv = 0, sor = [], vissza = null, token = 0;
     var mutat = function (i) {
       aktiv = (i + sor.length) % sor.length;
-      var g = sor[aktiv], kis = g.querySelector('img');
-      img.src = g.getAttribute('data-nagy'); img.alt = kis ? kis.alt : '';
+      var g = sor[aktiv], kis = g.querySelector('img'), sajat = ++token;
+      var uj = d.createElement('img');
+      uj.setAttribute('data-nagyito-img', '');
+      uj.alt = kis ? kis.alt : '';
+      if (kis && kis.getAttribute('width')) { uj.width = +kis.getAttribute('width'); uj.height = +kis.getAttribute('height'); }
+      if (kis && kis.complete && kis.naturalWidth) uj.src = kis.currentSrc || kis.src;
+      else uj.className = 'is-tolt';
+      img.parentNode.replaceChild(uj, img); img = uj;
       felirat.textContent = kis ? kis.alt : '';
       szam.textContent = (aktiv + 1) + ' / ' + sor.length;
+      var nagy = new Image();
+      var kesz = function () { if (sajat !== token) return; uj.src = nagy.src; uj.className = ''; };
+      nagy.onload = function () {
+        if (sajat !== token) return;
+        if (nagy.decode) nagy.decode().then(kesz, kesz); else kesz();
+      };
+      nagy.src = g.getAttribute('data-nagy');
     };
     racs.addEventListener('click', function (e) {
       var g = e.target.closest('.cs'); if (!g) return;
@@ -80,7 +97,7 @@
       else if (e.key === 'ArrowRight') { e.preventDefault(); mutat(aktiv + 1); }
     });
     dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
-    dlg.addEventListener('close', function () { if (window.HNLenis) window.HNLenis.start(); if (vissza) vissza.focus(); });
+    dlg.addEventListener('close', function () { token++; if (window.HNLenis) window.HNLenis.start(); if (vissza) vissza.focus(); });
   }
 
   illeszt();

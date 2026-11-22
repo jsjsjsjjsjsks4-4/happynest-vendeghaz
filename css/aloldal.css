@@ -49,14 +49,15 @@
 .ho__cim{display:block;margin-bottom:.6rem;font-family:var(--serif);font-size:1.1875rem;font-weight:600;color:var(--szoveg);letter-spacing:0}
 .ho__racs{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:.25rem}
 .ho__hn{text-align:center;font-size:.8125rem;color:var(--halk);padding-bottom:.25rem}
-.ho__nap{aspect-ratio:1;min-height:2.75rem;display:grid;place-items:center;padding:0;border:1px solid var(--akcent-hatar);border-radius:4px;background:var(--alap);color:var(--szoveg);font:500 .9375rem/1 var(--sans);cursor:pointer}
-.ho__nap:hover:not(:disabled){background:var(--felulet)}
-.ho__nap[data-allapot="foglalt"]{background:var(--felulet);border-color:transparent;color:var(--halk)}
+/* a nap állapotát színkitöltés jelzi, rácsvonal nincs: szabad = halvány fa, foglalt = szürke áthúzva, múlt = kitöltés nélkül */
+.ho__nap{aspect-ratio:1;min-height:2.75rem;display:grid;place-items:center;padding:0;border:0;border-radius:4px;background:var(--akcent-halvany);color:var(--szoveg);font:500 .9375rem/1 var(--sans);cursor:pointer}
+.ho__nap:hover:not(:disabled){background:var(--akcent-hatar)}
+.ho__nap[data-allapot="foglalt"]{background:var(--vonal);color:var(--halk)}
 .ho__nap[data-allapot="foglalt"] [data-naptar-szam]{text-decoration:line-through;text-decoration-thickness:1px}
-.ho__nap[data-allapot="mult"]{border-color:transparent;background:transparent;color:var(--halk);cursor:default}
-.ho__nap[data-allapot="ismeretlen"]{border-style:dashed;border-color:var(--vonal)}
-.ho__nap[data-kijeloles="kozte"]{background:var(--akcent-halvany);border-color:transparent}
-.ho__nap[data-kijeloles="erkezes"],.ho__nap[data-kijeloles="tavozas"]{background:var(--akcent-sz);border-color:var(--akcent-sz);color:var(--alap);text-decoration:none}
+.ho__nap[data-allapot="mult"]{background:transparent;color:var(--halk);cursor:default}
+.ho__nap[data-allapot="ismeretlen"]{background:transparent;color:var(--halk)}
+.ho__nap[data-kijeloles="kozte"]{background:var(--akcent-hatar)}
+.ho__nap[data-kijeloles="erkezes"],.ho__nap[data-kijeloles="tavozas"]{background:var(--akcent-sz);color:var(--alap);text-decoration:none}
 @media (max-width:760px){.honapok{grid-template-columns:1fr}.honapok .ho:nth-child(n+2){display:none}}
 @media (min-width:761px) and (max-width:1099px){.honapok{grid-template-columns:repeat(2,minmax(0,1fr))}.honapok .ho:nth-child(3){display:none}}
 .naptar__also{display:grid;gap:1.25rem var(--res-2);margin-top:1.5rem}
@@ -98,3 +99,38 @@
 @media (min-width:761px){.hiba404__kep{max-width:none}}
 .hiba404__szoveg{display:grid;gap:1rem}
 @media (min-width:761px){.hiba404__kep{grid-column:1 / 5}.hiba404__szoveg{grid-column:6 / 12}}
+
+.ur__adatv{font-size:1rem;color:var(--halk)}
+
+/* ---------- Jogi oldalak (adatkezelés, impresszum, házirend): egyszerű szövegoszlop, legfeljebb kb. 68 karakter ----------
+   Asztalon: fej a 2-9. hasábban, alatta a szöveg; az adatkezelésnél a tartalomjegyzék balra ragad (1-3. hasáb). */
+.jog .racs{row-gap:var(--res-2);align-items:start}
+.jog__fej{display:grid;gap:1rem}
+.jog__allapot{font-size:1rem;color:var(--halk)}
+.jog__szoveg{display:grid;gap:var(--res-2);max-width:68ch}
+.jog__szoveg section{display:grid;gap:.85rem;scroll-margin-top:calc(var(--nav) + 1rem)}
+.jog__szoveg h2{font-size:1.5rem}
+.jog__lista{display:grid;gap:.35rem;padding-left:1.15rem;list-style:disc}
+.jog__lista li::marker{color:var(--akcent)}
+.jog__adat{display:grid;gap:.6rem}
+.jog__adat div{display:grid;grid-template-columns:minmax(7.5rem,11rem) minmax(0,1fr);gap:.25rem 1.25rem}
+.jog__adat dt{font-size:var(--t-cimke);font-weight:600;color:var(--halk);padding-top:.2rem}
+.jog__tart{display:none}
+.jog__tart ol{display:grid;gap:.1rem;margin-top:.5rem;counter-reset:t}
+.jog__tart a{display:inline-flex;align-items:center;min-height:2.25rem;color:var(--szoveg);text-decoration:none;font-size:1rem}
+.jog__tart a:hover{color:var(--akcent-sz);text-decoration:underline;text-underline-offset:.25em}
+/* jól látható jelölés a még kitöltendő adatnál: halvány fa kitöltés, sötét szöveg (10,1:1) */
+.kitolt{background:var(--akcent-halvany);color:var(--szoveg);padding:.05em .3em;border-radius:3px;font-weight:500;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+@media (max-width:560px){.jog__adat div{grid-template-columns:1fr}}
+@media (min-width:761px){.jog__fej{grid-column:2 / 10}.jog__szoveg{grid-column:2 / 11}}
+@media (min-width:1100px){
+  .jog__fej{grid-column:4 / 11}
+  .jog__szoveg{grid-column:4 / 12}
+  .jog__tart{display:block;grid-column:1 / 4;grid-row:2;position:sticky;top:calc(var(--nav) + 1.5rem)}
+}
+
+/* lábléc: jogi linkek az alsó sorban */
+.lab__jogi{display:flex;flex-wrap:wrap;gap:0 1.25rem;margin-left:auto}
+.lab__jogi a{display:inline-flex;align-items:center;min-height:2.75rem;color:var(--s-halk)}
+.lab__jogi a:hover{color:var(--s-szoveg)}
+@media (max-width:760px){.lab__jogi{margin-left:0;width:100%}}

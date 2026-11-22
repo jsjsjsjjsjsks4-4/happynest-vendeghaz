@@ -1,0 +1,175 @@
+/* HappyNest v5 · csak a főoldal (index.html). Az oldalak.css UTÁN töltődik, a közös fájlokhoz (alap.css, oldalak.css,
+   aloldal.css) nem nyúl, így az aloldalak változatlanok.
+   2026-11-22 este (t_5283e705, hero 4): Levente a görgetés-vezérelt „betű-ablak” nyitóképet és a beutazás, panoráma
+   prototípusokat is elutasította, a fő baj maga a mozgás volt. Az új nyitókép egyszerű és nyugodt: egy kép (a havas
+   udvar a fenyő alatt), pontosan egy képernyő, a cím és a gombok a kép alján. Három csendes mozgás, ennyi: lassú
+   Ken Burns (img), lágy szöveg-belépő (.nyk__be), enyhe parallax és halványulás görgetésre (fooldal.js, GSAP).
+   Kikerült maradék nélkül: sticky színpad, pin, scrub-idővonal, „HappyNest” maszkos felirat-lap, lap-feloldódás,
+   pára, hó (canvas és CSS-pelyhek), a fejléc betöltési elrejtése, a bh-m mozgás-mód osztály.
+   2026-11-22 késő este (t_a3fad1bd, hero 5): Levente szerint „a főhero most egyáltalán nem mozog”. A mozgás futott,
+   csak halk volt és megállt. Ugyanaz a kép és szöveg, de a mozgás érezhető és folyamatos: végtelen, oda-vissza Ken
+   Burns (1,0 ↔ 1,12 és ±2,4 % úszás), erősebb parallax (27 %), a szöveg görgetésre lassan felúszik és halványul,
+   ritka, apró hó canvasban a kép előtt.
+   Minden mozgás transform, scale, translate vagy opacity; fix, teljes képernyős blend-réteg nincs. */
+
+/* ---------- 1. Nyitókép: egy kép, csendes mozgás ---------- */
+/* pontosan egy képernyő (a fejléc alá is benyúlik, a fejléc saját hátteret kap); a sötét alap tartalék, ha a fotó
+   nem jön meg: a krém betű így is olvasható */
+.nyk{position:relative;margin-top:calc(-1 * var(--nav));height:max(100svh, 40rem);padding-top:var(--nav);overflow:clip;background:var(--s-alap)}
+/* a padding-top a fejléc helye: az abszolút gyerekeket nem tolja el (a tartalmazó blokk a padding-doboz), a statikus
+   szkennelő (impeccable cramped-padding) viszont látja */
+.nyk__kep{position:absolute;inset:0;margin:0;border-radius:0;background:var(--s-alap)}
+/* két mozgató, két elem: a réteg a parallax (transform, fooldal.js, GSAP), az img a Ken Burns (az egyedi scale és
+   translate tulajdonság, CSS). 2026-11-22 (t_a3fad1bd, hero 5): a kép doboza mindkét oldalon 3,4 %-kal túlnyúlik a
+   kereten, így a ±2,4 %-os oldalirányú úszás az 1,0-s skálán sem hozza be a kép szélét (a figure vágja) */
+.nyk__reteg{position:absolute;inset:0}
+.nyk__kep picture{position:absolute;top:0;bottom:0;left:-3.4%;right:-3.4%;display:block}
+.nyk__kep img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 42%;transform-origin:50% 45%}
+@media (max-width:760px){.nyk__kep img{object-position:50% 62%}}
+/* ritka hó a kép előtt (fooldal.js, 2D canvas), a szöveg-sáv alatt; mozgás nélkül el sem indul, és nem is látszik */
+.nyk__ho{position:absolute;inset:0;z-index:1;width:100%;height:100%;pointer-events:none;display:none}
+.js:not(.hn-csendes) .nyk__ho{display:block}
+
+/* finom sötétítés csak a szöveg mögött: a szöveg-sáv saját hátterében, a sáv teteje fölött 8 rem alatt fut ki, így
+   a szöveg magasságához igazodik (szélességtől és sortöréstől függetlenül), a kép felső része érintetlen. A szín a
+   kép saját árnyéktónusa (#2E2924). A sáv a lappal halad, nem a parallax-réteggel, így görgetés közben sem gyengül a
+   kontraszt (mérve a valódi pixeleken: hero-kontraszt4.py) */
+.nyk__talaj::before{content:"";position:absolute;left:0;right:0;bottom:0;top:-8rem;z-index:-1;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(46,41,36,0) 0,rgba(46,41,36,.32) 3.5rem,rgba(46,41,36,.7) 6.25rem,rgba(46,41,36,.86) 8rem,rgba(46,41,36,.9) 100%)}
+
+/* szöveg a megszokott helyen: a kép alján, asztalon a cím balra (1-6. hasáb), a bevezető és a gombok jobbra */
+.nyk__talaj{position:absolute;left:0;right:0;bottom:0;z-index:2;padding-bottom:4.5rem;color:var(--alap)}
+.nyk__in{row-gap:1.5rem;align-items:end}
+.nyk__h1{color:var(--alap)}
+.nyk__h1 .cimke{display:block;margin-bottom:.5rem;color:var(--alap)}  /* a képen az akcent-szín csak 3,8:1 (mérve), ezért krém */
+.nyk__cim{display:block}
+.nyk__jobb{display:grid;gap:1.25rem;align-content:end}
+.nyk__jobb .lead{max-width:48ch;color:var(--s-halk)}
+.nyk__talaj .lnk{color:var(--alap);text-decoration-color:var(--s-akcent)}
+.nyk__talaj :focus-visible{outline-color:var(--alap)}
+@media (min-width:761px){
+  .nyk__h1{grid-column:1 / 7;max-width:22ch}
+  .nyk__jobb{grid-column:7 / 13}
+}
+@media (max-width:760px){.nyk__talaj{padding-bottom:var(--sz)}}
+
+/* mozgás (csak JS-sel és reduced-motion nélkül; a .hn-csendes alatt álló kép, 1-es skála, és kész szöveg):
+   1) Ken Burns, ami nem áll meg (2026-11-22, hero 5: a megálló 14 s-os, 6 %-os változatot Levente állónak látta):
+      két külön tulajdonság, két különböző hosszú, végtelen, oda-vissza ciklus lágy szinuszos easinggel. A nagyítás
+      1,0 és 1,12 között 24 s alatt, az úszás -2,4 % és +2,4 % között 19 s alatt jár; mivel a két ciklus hossza
+      eltér, a kettő sosem fordul egyszerre, így a kép egyetlen pillanatra sem áll meg. A hn.js .is-be osztálya
+      indítja (amint a fotó megvan, legkésőbb 1,2 s múlva); ha a nyitókép nem látszik (.is-kint), szünetel.
+   2) belépő: felirat, cím, bevezető, gombok egymás után, fade + 12 px felfelé; az utolsó 0,45 s-kor indul és 0,8 s
+      alatt ér be, összesen 1,25 s */
+.js:not(.hn-csendes) .nyk__kep img{scale:1;translate:-2.4% 0}
+.js:not(.hn-csendes) .nyk.is-be .nyk__kep img{animation:nyk-kb-nagyit 24s cubic-bezier(.37,0,.63,1) infinite alternate both,nyk-kb-usz 19s cubic-bezier(.37,0,.63,1) infinite alternate both}
+.js:not(.hn-csendes) .nyk.is-kint .nyk__kep img{animation-play-state:paused}
+@keyframes nyk-kb-nagyit{from{scale:1}to{scale:1.12}}
+@keyframes nyk-kb-usz{from{translate:-2.4% 0}to{translate:2.4% 0}}
+.js:not(.hn-csendes) .nyk__be{opacity:0;transform:translateY(12px)}
+.js:not(.hn-csendes) .nyk.is-be .nyk__be{opacity:1;transform:none;transition:opacity .8s var(--ease-ki),transform .8s var(--ease-ki)}
+.js:not(.hn-csendes) .nyk.is-be .nyk__cim{transition-delay:.12s}
+.js:not(.hn-csendes) .nyk.is-be .nyk__jobb .lead{transition-delay:.3s}
+.js:not(.hn-csendes) .nyk.is-be .nyk__jobb .sorgomb{transition-delay:.45s}
+/* biztonsági háló: ha az .is-be 2,5 s alatt sem jön meg (a hn.js nem töltött be), a szöveg magától előjön */
+.js:not(.hn-csendes) .nyk:not(.is-be) .nyk__be{animation:nyk-mento .01s linear 2.5s forwards}
+@keyframes nyk-mento{to{opacity:1;transform:none}}
+
+/* a nyitókép és a Fészek között nincs átfedés (a korábbi rácsúszó lap-él kikerült): a Fészek pontosan a hajtás alatt
+   kezdődik, a fotó éle tiszta vágás a lap színére */
+
+/* ---------- 2. Az oldal többi része ---------- */
+/* háttértónus-ritmus: a lap színe görgetéssel lágyan átúszik a len (#F6F1E9) és a meleg felület (#EAE5DD) között
+   (fooldal.js, reduced-motion alatt is, idle-snap nélkül). A halványabb tónuson az akcent-betű a mélyebb
+   fa-tónust kapja (5,5:1 → 4,9:1 a legsötétebb ponton is). */
+.p-fo .kicker,.p-fo .minta-jel{color:var(--gomb-hover)}
+
+/* wellness: a két kép EGY párként mozog (Levente, 2026-11-22: az eltolt parallaxnál „fura, hogy az egyik feljebb megy”).
+   1) Egy közös jel (a szakasz .is-nyit osztálya, fooldal.js, egyetlen IntersectionObserver) a két keretet ugyanabban
+      a képkockában nyitja alulról felfelé: clip-path a .kp-n, Y-eltolás nélkül, a keret helye nem változik, a tetejük
+      végig egy vonalban marad. 2) A belső img skáláját a GSAP egyetlen tweenje viszi mindkét képen (1,08 → 1, scrub):
+      a clip a kereten, a scale a képen, két elem. 3) A két felirat együtt, rövid áttűnéssel érkezik (8 px).
+   A rejtést a fooldal.js élesíti (html.hn-wp), így JS nélkül, reduced-motion alatt és ha a fájl nem fut le, a képek
+   eleve nyitva vannak. Mögöttük halk, sötét pára lassú sodrásban (sima háttérkép, nem mask-image: a maszk file://
+   alatt CORS-hibát ad); a pára a szakasz álelemén él, a képekhez nem nyúl. */
+.p-fo .wellness-f{position:relative;z-index:0;overflow:clip}
+.hn-wp .p-fo .wellness-f .wp .kp{clip-path:inset(100% 0 0 0)}
+.hn-wp .p-fo .wellness-f.is-nyit .wp .kp{clip-path:inset(0 0 0 0);transition:clip-path 1s cubic-bezier(.22,.61,.36,1)}
+.hn-wp .p-fo .wellness-f .wp :is(h3,p){opacity:0;transform:translateY(8px)}
+.hn-wp .p-fo .wellness-f.is-nyit .wp :is(h3,p){opacity:1;transform:none;
+  transition:opacity .5s var(--ease-ki) .4s,transform .5s var(--ease-ki) .4s,translate .6s var(--ease-ki)}
+.hn-csendes .p-fo .wellness-f .wp .kp{clip-path:none}
+.hn-csendes .p-fo .wellness-f .wp :is(h3,p){opacity:1;transform:none}
+.p-fo .wellness-f::before{content:"";position:absolute;z-index:-1;left:0;top:30%;height:66%;width:200%;pointer-events:none;
+  background:url(../media/para-sotet-800.webp) repeat-x 0 50% / 50% 100%;opacity:.1}
+.js:not(.hn-csendes) .p-fo .wellness-f::before{animation:hn-para 90s ease-in-out infinite alternate}
+@keyframes hn-para{0%{translate:0 0}100%{translate:-50% 2%}}
+@media (max-width:760px){.js:not(.hn-csendes) .p-fo .wellness-f::before{animation:none}}
+
+/* vendégértékelés: a 9,8 körül vékony gyűrű rajzolódik ki (pecsét), a szám közben kis forgással a helyére ül */
+@property --pv{syntax:"<angle>";inherits:false;initial-value:360deg}
+.p-fo .velemeny__szam{position:relative;display:inline-grid;place-items:center;width:2.3em;aspect-ratio:1;margin-left:-.35em;padding-top:.08em}
+.p-fo .velemeny__szam::before{content:"";position:absolute;inset:0;border-radius:50%;border:1px solid var(--akcent-hatar);
+  -webkit-mask:conic-gradient(#000 var(--pv),transparent 0);mask:conic-gradient(#000 var(--pv),transparent 0)}
+.p-fo .velemeny__szam > span{display:inline-block}
+.js:not(.hn-csendes) .p-fo .velemeny__ertek:not(.is-be) .velemeny__szam::before{--pv:0deg}
+.js:not(.hn-csendes) .p-fo .velemeny__ertek.is-be .velemeny__szam::before{animation:hn-pecset 1.4s cubic-bezier(.5,0,.2,1) .1s both}
+.js:not(.hn-csendes) .p-fo .velemeny__ertek .velemeny__szam > span{transform:rotate(-14deg) scale(.92)}
+.js:not(.hn-csendes) .p-fo .velemeny__ertek.is-be .velemeny__szam > span{transform:none;transition:transform 1.2s var(--ease-ki) .15s}
+@keyframes hn-pecset{from{--pv:0deg}to{--pv:360deg}}
+
+/* vendégvélemények: három valódi szallas.hu-idézet egymás helyén (egy rács-cella, a magasság a leghosszabbé, nincs
+   ugrás). Csere áttűnéssel, az új idézet szavai egymás után érkeznek (fooldal.js). JS nélkül mind a három olvasható. */
+.idezetek{display:grid;gap:1.25rem}
+.js .idezetek{gap:0}
+.js .idezet{grid-area:1 / 1;opacity:0;visibility:hidden;transition:opacity .55s ease,visibility 0s linear .55s}
+.js .idezet.is-akt{opacity:1;visibility:visible;transition:opacity .55s ease}
+.js:not(.hn-csendes) .idezet .iszo{display:inline-block;opacity:0;transform:translateY(.25em)}
+.js:not(.hn-csendes) .idezet.is-szo .iszo{opacity:1;transform:none;transition:opacity .6s var(--ease-ki),transform .7s var(--ease-ki);transition-delay:calc(var(--w, 0) * 42ms)}
+.velemeny__lab{display:flex;align-items:center;gap:.75rem;margin-top:1.1rem}
+.p-fo .velemeny__idezet .velemeny__lab figcaption{margin-top:0}
+.idezet__szunet{width:2.75rem;height:2.75rem}
+
+/* képek: egér alatt enyhe nagyítás a keretben (külön scale tulajdonság, a görgetéses zoom transformja mellett),
+   a felirat finoman elmozdul. Csak valódi mutatóval és mozgás mellett. */
+@media (hover:hover) and (pointer:fine){
+  .js:not(.hn-csendes) .p-fo :is(.mozaik,.wp,.kepsor) .kp img{transition:scale .9s var(--ease-ki)}
+  .js:not(.hn-csendes) .p-fo :is(.m,.wp,.kepsor li):hover .kp img{scale:1.04}
+  .js:not(.hn-csendes) .p-fo :is(.m,.kepsor li) figcaption,.js:not(.hn-csendes) .p-fo .wp h3{transition:translate .6s var(--ease-ki)}
+  .js:not(.hn-csendes) .p-fo :is(.m,.kepsor li):hover figcaption,.js:not(.hn-csendes) .p-fo .wp:hover h3{translate:6px 0}
+  /* szöveges linkek: az aláhúzás balról jobbra kitöltődik a szöveg színével (két álelem: az alap akcent-vonal és
+     fölötte a scaleX-szel nyíló szövegszínű vonal; transform, nem háttér-méret) */
+  .p-fo .lnk:has(.lnk__t){text-decoration:none}
+  .p-fo .lnk__t{position:relative;padding-bottom:.16em}
+  .p-fo .lnk__t::before,.p-fo .lnk__t::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;pointer-events:none}
+  .p-fo .lnk__t::before{background:var(--akcent)}
+  .p-fo .lnk__t::after{background:currentColor;transform:scaleX(0);transform-origin:0 50%;transition:transform .35s var(--ease-ki)}
+  .p-fo .lnk:hover .lnk__t::after{transform:scaleX(1)}
+  .p-fo :is(.nyk__talaj,.sotet) .lnk__t::before{background:var(--s-akcent)}
+}
+@media (hover:hover) and (pointer:fine) and (max-width:760px){
+  .p-fo .nyk__talaj .lnk__t::before{background:var(--s-akcent)}
+}
+
+/* naptár: a 21 nap gyors hullámban érkezik (11 ms lépés, 0,16 s: összesen kb. 0,38 s) */
+.js .p-fo .sav[data-r="lepcso"] > *{transition-duration:.16s;transition-delay:calc(var(--i, 0) * 11ms)}
+
+
+/* ---------- 3. Új motívumok (2026-11-22) ---------- */
+/* A házban: a két kis kép balról, egyenes széllel nyílik, egymás után (a nagy kép alulról, ez a közös data-r="maszk") */
+.js [data-r="maszk-bal"]{opacity:1;transform:none;clip-path:inset(0 100% 0 0);transition:clip-path .9s var(--ease-ki)}
+.js [data-r="maszk-bal"].is-be{clip-path:inset(0 0 0 0)}
+.js .mozaik [data-r="maszk-bal"]:nth-child(2){transition-delay:.14s}
+.js .mozaik [data-r="maszk-bal"]:nth-child(3){transition-delay:.26s}
+.hn-csendes [data-r="maszk-bal"]{clip-path:none;transition:none}
+
+/* záró szakasz: a telefonszám számjegyei maszkból, sorban gördülnek fel (fooldal.js bontja, IntersectionObserver) */
+.tsz{display:inline-block;overflow:clip;vertical-align:top;padding-top:.08em;margin-top:-.08em}
+.tsz > span{display:inline-block;transform:translateY(105%)}
+.is-be > .tsz > span{transform:none;transition:transform .7s var(--ease-ki);transition-delay:calc(var(--c, 0) * 32ms)}
+
+/* lábléc: a „HappyNest” név széthúzott, halvány betűkből áll össze */
+.lb{display:inline-block}
+.lb > span{display:inline-block;opacity:0;transform:translateX(var(--x, 0))}
+.is-be > .lb > span{opacity:1;transform:none;transition:opacity .9s var(--ease-ki),transform 1.2s var(--ease-ki);transition-delay:calc(var(--c, 0) * 24ms)}
+.lb.is-ur{width:.25em}

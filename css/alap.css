@@ -68,15 +68,15 @@ p{text-wrap:pretty;max-width:62ch}
 .sorgomb{display:flex;flex-wrap:wrap;gap:.75rem 1.5rem;align-items:center}
 
 /* fejléc: mindig látható, a menüpontok asztalon kint vannak */
-.fej{position:sticky;top:0;z-index:40;background:var(--alap);transition:box-shadow .2s var(--ease)}
-.fej.is-gorgetve{box-shadow:0 1px 0 var(--vonal)}
+.fej{position:sticky;top:0;z-index:40;background:var(--alap)}  /* alsó vonal nincs (Levente: felesleges csíkok ki) */
 .fej__in{display:flex;align-items:center;justify-content:space-between;gap:2rem;height:var(--nav)}
 .logo{display:inline-flex;align-items:baseline;gap:.6rem;min-height:2.75rem;padding-top:.7rem;text-decoration:none;color:var(--szoveg)}
 .logo__nev{font-family:var(--serif);font-weight:500;font-size:1.375rem;line-height:1}
 .logo__hely{font-size:var(--t-cimke);color:var(--halk);line-height:1}
 .fej__nav{display:flex;gap:.25rem 1.75rem;align-items:center}
-.fej__nav a{display:inline-flex;align-items:center;min-height:2.75rem;font-size:.9375rem;font-weight:500;color:var(--szoveg);text-decoration:none;border-bottom:1.5px solid transparent;transition:border-color .2s var(--ease)}
-.fej__nav a:hover{border-bottom-color:var(--vonal)}
+.fej__nav a{display:inline-flex;align-items:center;min-height:2.75rem;font-size:.9375rem;font-weight:500;color:var(--szoveg);text-decoration:none;border-bottom:1.5px solid transparent;transition:color .2s var(--ease)}
+.fej__nav a:hover{color:var(--akcent-sz)}
+/* az aktív oldal jelzése funkcionális: aláhúzás az aktuális menüponton */
 .fej__nav a[aria-current="page"]{border-bottom-color:var(--akcent)}
 .fej__menu{display:none;min-height:2.75rem;padding:.4rem .9rem;background:transparent;color:var(--szoveg);border:1px solid var(--vonal);border-radius:var(--r);font:500 .9375rem/1 var(--sans);cursor:pointer}
 
@@ -114,13 +114,24 @@ p{text-wrap:pretty;max-width:62ch}
 .lab h2{font-family:var(--sans);font-size:var(--t-cimke);font-weight:500;color:var(--s-halk);margin-bottom:.5rem}
 .lab ul a{display:inline-flex;align-items:center;min-height:2.75rem;min-width:2.75rem}
 .lab__adat p{color:var(--s-halk);margin-top:.25rem}
-.lab__also{display:flex;flex-wrap:wrap;gap:.25rem 1.5rem;margin-top:var(--res-2);font-size:var(--t-cimke);color:var(--s-halk)}
+.lab__also{display:flex;flex-wrap:wrap;align-items:center;gap:.25rem 1.5rem;margin-top:var(--res-2);font-size:var(--t-cimke);color:var(--s-halk)}
 @media (min-width:761px){.lab__in{grid-template-columns:5fr 3fr 4fr}}
 
-/* belépő: legfeljebb 0,4 s és 8 px; reduced-motion és JS nélkül azonnal kész */
-.js [data-r]{opacity:0;transform:translateY(8px);transition:opacity .4s var(--ease),transform .4s var(--ease)}
+/* belépő (IntersectionObserver a hn.js-ben, GSAP nélkül): szöveg fade + 10 px fel; kép balról vagy jobbról 48 px;
+   maszk = alulról nyíló vágás; lépcső = a gyerekek egymás után. Lágy ease-out, 0,6-0,8 s.
+   Reduced-motion (.hn-csendes) és JS nélkül azonnal a végállapot. */
+:root{--ease-ki:cubic-bezier(.16,1,.3,1)}
+.js [data-r]{opacity:0;transform:translateY(10px);transition:opacity .6s var(--ease-ki),transform .6s var(--ease-ki)}
+.js [data-r="bal"]{transform:translateX(-48px);transition-duration:.75s}
+.js [data-r="jobb"]{transform:translateX(48px);transition-duration:.75s}
+.js [data-r="maszk"]{opacity:1;transform:none;clip-path:inset(0 0 100% 0);transition:clip-path .8s var(--ease-ki)}
+.js [data-r="lepcso"]{opacity:1;transform:none}
+.js [data-r="lepcso"] > *{opacity:0;transform:translateY(6px);transition:opacity .45s var(--ease-ki),transform .45s var(--ease-ki);transition-delay:calc(var(--i, 0) * 28ms)}
 .js [data-r].is-be{opacity:1;transform:none}
+.js [data-r="maszk"].is-be{clip-path:inset(0 0 0 0)}
+.js [data-r="lepcso"].is-be > *{opacity:1;transform:none}
+.js [data-r="jobb"]:nth-child(3){transition-delay:.12s}
+.hn-csendes [data-r],.hn-csendes [data-r="lepcso"] > *{opacity:1;transform:none;clip-path:none;transition:none}
 @media (prefers-reduced-motion:reduce){
-  .js [data-r]{opacity:1;transform:none;transition:none}
   .gomb,.lnk,.fej,.fej__nav a{transition:none}
 }
